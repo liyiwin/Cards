@@ -12,9 +12,6 @@ import com.example.cards.ui_operation.UiOperationsManager
 class MainActivity : AppCompatActivity() {
 
 
-
-    private var pendingComparisonDataList = mutableListOf<PendingComparisonData>()
-
     private var selectedImages = mutableListOf<ImageView>()
 
     private var list = mutableListOf<Int>()
@@ -317,7 +314,7 @@ class MainActivity : AppCompatActivity() {
 
            }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[0],binding.imageViewOne,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[0],binding.imageViewOne,this)
 
         }
 
@@ -334,7 +331,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[1],binding.imageViewTwo,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[1],binding.imageViewTwo,this)
 
 
         }
@@ -353,7 +350,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[2],binding.imageViewThree,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[2],binding.imageViewThree,this)
 
 
         }
@@ -371,7 +368,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[3],binding.imageViewFour,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[3],binding.imageViewFour,this)
 
         }
 
@@ -387,7 +384,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[4],binding.imageViewFive,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[4],binding.imageViewFive,this)
 
 
 
@@ -406,7 +403,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[5],binding.imageViewSix,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[5],binding.imageViewSix,this)
 
         }
 
@@ -422,7 +419,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[6],binding.imageViewSeven,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[6],binding.imageViewSeven,this)
 
         }
 
@@ -438,7 +435,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[7],binding.imageViewEight,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[7],binding.imageViewEight,this)
 
         }
 
@@ -454,7 +451,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[8],binding.imageViewNine,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[8],binding.imageViewNine,this)
 
         }
 
@@ -470,7 +467,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[9],binding.imageViewTen,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[9],binding.imageViewTen,this)
 
         }
         binding.imageViewEleven.setOnClickListener {
@@ -485,7 +482,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[10],binding.imageViewEleven,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[10],binding.imageViewEleven,this)
 
 
         }
@@ -501,7 +498,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[11],binding.imageViewTwelve,this,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[11],binding.imageViewTwelve,this)
 
         }
 

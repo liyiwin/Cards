@@ -9,6 +9,8 @@ import android.widget.Toast
 
 class UiLogicDelegate (private val carTagManager: ICardTagManager){
 
+    private val pendingComparisonDataList = mutableListOf<PendingComparisonData>()
+
 fun set_enable(unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>){
 
         selectedImages.clear()
@@ -24,7 +26,7 @@ fun set_enable(unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
 
 
-fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, context: Context, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>) {
+fun compare (context: Context, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>) {
 
     if (pendingComparisonDataList.size == 2 ){
 
@@ -174,7 +176,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
 
 
-  fun rotateCardUpright(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableList<ImageView>, point:Int, ima: ImageView, context: Context, pendingComparisonDataList:MutableList<PendingComparisonData>){
+  fun rotateCardUpright(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableList<ImageView>, point:Int, ima: ImageView, context: Context){
 
       var my_animation =  AnimationUtils.loadAnimation(context, R.anim.back)
 
@@ -193,7 +195,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
                       }
 
@@ -207,7 +209,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
                       }
 
@@ -221,7 +223,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
                       }
 
@@ -235,7 +237,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
                       }
 
@@ -249,7 +251,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point ))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
                       }
 
                       "six"->{
@@ -262,7 +264,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
                       }
 
@@ -276,7 +278,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
                       }
 
@@ -290,7 +292,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
                       }
 
@@ -304,7 +306,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
                       }
 
@@ -319,7 +321,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point ))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
 
                       }
@@ -334,7 +336,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
                       }
 
@@ -348,7 +350,7 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point  ))
 
-                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                          compare (context,unmatchedDataList,selectedImages)
 
 
                       }
