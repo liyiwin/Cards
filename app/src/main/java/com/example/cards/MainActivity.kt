@@ -44,20 +44,6 @@ class MainActivity : AppCompatActivity() {
 
     var tag_twelve  = "back"
 
-
-    var img_one_value = 0
-    var img_two_value = 0
-    var img_three_value = 0
-    var img_four_value = 0
-    var img_five_value = 0
-    var img_six_value = 0
-    var img_seven_value = 0
-    var img_eight_value = 0
-    var img_nine_value = 0
-    var img_ten_value = 0
-    var img_eleven_value = 0
-    var img_twelve_value = 0
-
     private lateinit var binding: ActivityMainBinding
 
 
