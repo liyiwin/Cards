@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 
-class ViewModel(app: Application): AndroidViewModel(app) {
+class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager {
 
     val ima_one_tag = MutableLiveData<String>()
 
@@ -31,7 +31,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
     val ima_twelve_tag = MutableLiveData<String>()
 
 
-    fun set_ima_one_tag(tag:String){
+    override fun set_ima_one_tag(tag:String){
 
         ima_one_tag.value = tag
     }
@@ -42,7 +42,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
     }
 
-    fun set_ima_two_tag(tag:String){
+    override fun set_ima_two_tag(tag:String){
 
         ima_two_tag.value = tag
 
@@ -56,7 +56,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
 
 
-    fun set_ima_three_tag(tag:String){
+    override fun set_ima_three_tag(tag:String){
 
         ima_three_tag.value = tag
 
@@ -69,7 +69,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
     }
 
-    fun set_ima_four_tag(tag:String){
+    override fun set_ima_four_tag(tag:String){
         ima_four_tag.value = tag
 
     }
@@ -80,7 +80,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
     }
 
-    fun set_ima_five_tag(tag:String){
+    override fun set_ima_five_tag(tag:String){
 
         ima_five_tag.value = tag
 
@@ -93,7 +93,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
     }
 
-    fun set_ima_six_tag(tag:String){
+    override fun set_ima_six_tag(tag:String){
 
         ima_six_tag.value =tag
 
@@ -106,7 +106,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
     }
 
-    fun set_ima_seven_tag(tag:String){
+    override fun set_ima_seven_tag(tag:String){
 
         ima_seven_tag.value= tag
 
@@ -118,7 +118,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
     }
 
-    fun set_ima_eight_tag(tag:String){
+    override fun set_ima_eight_tag(tag:String){
 
         ima_eight_tag.value = tag
 
@@ -130,7 +130,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
     }
 
-    fun set_ima_nine_tag(tag:String){
+    override fun set_ima_nine_tag(tag:String){
 
         ima_nine_tag.value = tag
 
@@ -141,7 +141,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
         return ima_nine_tag
 
     }
-    fun set_ima_ten_tag(tag:String){
+    override fun set_ima_ten_tag(tag:String){
 
         ima_ten_tag.value = tag
 
@@ -154,7 +154,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
     }
 
-    fun set_ima_eleven_tag(tag:String){
+    override fun set_ima_eleven_tag(tag:String){
 
         ima_eleven_tag.value = tag
 
@@ -166,7 +166,7 @@ class ViewModel(app: Application): AndroidViewModel(app) {
 
     }
 
-    fun set_ima_twelve_tag(tag:String){
+    override fun set_ima_twelve_tag(tag:String){
 
          ima_twelve_tag.value = tag
 
