@@ -9,15 +9,15 @@ import android.widget.Toast
 
 
 
-fun set_enable(image_list: MutableList<ImageView>, collected_image: MutableList<ImageView>, pendingComparisonDataList: MutableList<PendingComparisonData> ){
+fun set_enable(unmatchedDataList: MutableList<ImageView>, collected_image: MutableList<ImageView>, pendingComparisonDataList: MutableList<PendingComparisonData> ){
 
     if (pendingComparisonDataList.size == 2){
 
         collected_image.clear()
 
-        for (i in 0 until image_list.size){
+        for (i in 0 until unmatchedDataList.size){
 
-            image_list[i].isEnabled  = true
+            unmatchedDataList[i].isEnabled  = true
 
         }
 
@@ -27,7 +27,7 @@ fun set_enable(image_list: MutableList<ImageView>, collected_image: MutableList<
 
 
 
-fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, context: Context, viewModel: ViewModel, image_list: MutableList<ImageView>, collected_image: MutableList<ImageView>) {
+fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, context: Context, viewModel: ViewModel, unmatchedDataList: MutableList<ImageView>, collected_image: MutableList<ImageView>) {
 
     if (pendingComparisonDataList.size == 2 ){
 
@@ -46,9 +46,9 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
         point_one != point_two -> {
 
-            shake(ima_one, point_one, context, "front", viewModel, this_list, image_list,collected_image, "one")
+            shake(ima_one, point_one, context, "front", viewModel, this_list, unmatchedDataList,collected_image, "one")
 
-            shake(ima_two, point_two, context, "front", viewModel, this_list, image_list,collected_image, "two")
+            shake(ima_two, point_two, context, "front", viewModel, this_list, unmatchedDataList,collected_image, "two")
 
 
         }
@@ -70,9 +70,9 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
                         handler.removeCallbacks(this)
 
-                        disappear(this_list, image_list,collected_image, ima_one, context, "one")
+                        disappear(this_list, unmatchedDataList,collected_image, ima_one, context, "one")
 
-                        disappear(this_list, image_list,collected_image, ima_two, context, "two")
+                        disappear(this_list, unmatchedDataList,collected_image, ima_two, context, "two")
 
                     }
 
@@ -93,7 +93,7 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
 
 
-fun shake(ima: ImageView, point:Int, context:Context, tag: String, viewModel: ViewModel, pendingComparisonDataList: MutableList<PendingComparisonData>, image_list: MutableList<ImageView>, collected_image: MutableList<ImageView>, flag:String) {
+fun shake(ima: ImageView, point:Int, context:Context, tag: String, viewModel: ViewModel, pendingComparisonDataList: MutableList<PendingComparisonData>, unmatchedDataList: MutableList<ImageView>, collected_image: MutableList<ImageView>, flag:String) {
 
 
 val animation = AnimationUtils.loadAnimation(context,R.anim.shake)
@@ -105,13 +105,13 @@ val animation = AnimationUtils.loadAnimation(context,R.anim.shake)
 
         override fun onAnimationEnd(animation: Animation?) {
 
-            animation(image_list,collected_image,point,ima,context,viewModel,tag,pendingComparisonDataList)
+            animation(unmatchedDataList,collected_image,point,ima,context,viewModel,tag,pendingComparisonDataList)
 
             // flag two 代表動畫完成
 
             if (flag == "two"){
 
-                set_enable(image_list,collected_image, pendingComparisonDataList )
+                set_enable(unmatchedDataList,collected_image, pendingComparisonDataList )
 
             }
 
@@ -133,7 +133,7 @@ ima.startAnimation(animation)
 
 
 
-fun disappear (pendingComparisonDataList: MutableList<PendingComparisonData>, image_list: MutableList<ImageView>, collected_image: MutableList<ImageView>, ima: ImageView, context:Context, flag:String){
+fun disappear (pendingComparisonDataList: MutableList<PendingComparisonData>, unmatchedDataList: MutableList<ImageView>, collected_image: MutableList<ImageView>, ima: ImageView, context:Context, flag:String){
 
     val animation = AnimationUtils.loadAnimation(context,R.anim.disappear)
 
@@ -154,13 +154,13 @@ fun disappear (pendingComparisonDataList: MutableList<PendingComparisonData>, im
 
                 val ima_two = pendingComparisonDataList[1].ima
 
-                image_list.remove(ima_one)
+                unmatchedDataList.remove(ima_one)
 
-                image_list.remove(ima_two)
+                unmatchedDataList.remove(ima_two)
 
-                set_enable(image_list,collected_image, pendingComparisonDataList)
+                set_enable(unmatchedDataList,collected_image, pendingComparisonDataList)
 
-                if (image_list.size  == 0 ){
+                if (unmatchedDataList.size  == 0 ){
 
                     Toast.makeText(context,"遊戲完成",Toast.LENGTH_LONG).show()
 
@@ -185,7 +185,7 @@ fun disappear (pendingComparisonDataList: MutableList<PendingComparisonData>, im
 
 
 
-fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<ImageView>, point:Int, ima: ImageView, context: Context, viewModel:ViewModel, tag:String, pendingComparisonDataList:MutableList<PendingComparisonData>){
+fun animation(unmatchedDataList:MutableList<ImageView>, collected_image:MutableList<ImageView>, point:Int, ima: ImageView, context: Context, viewModel:ViewModel, tag:String, pendingComparisonDataList:MutableList<PendingComparisonData>){
 
     var my_animation =  AnimationUtils.loadAnimation(context, R.anim.back)
 
@@ -206,7 +206,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
           }
 
@@ -220,7 +220,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
           }
 
@@ -234,7 +234,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
           }
 
@@ -248,7 +248,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
           }
 
@@ -262,7 +262,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
           }
 
           "six"->{
@@ -275,7 +275,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
           }
 
@@ -289,7 +289,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
           }
 
@@ -303,7 +303,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
           }
 
@@ -317,7 +317,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
           }
 
@@ -332,7 +332,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
 
           }
@@ -347,7 +347,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
           }
 
@@ -361,7 +361,7 @@ fun animation(imagelist:MutableList<ImageView>, collected_image:MutableList<Imag
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,imagelist,collected_image)
+              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,collected_image)
 
 
           }
