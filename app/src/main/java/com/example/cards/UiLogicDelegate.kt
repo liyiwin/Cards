@@ -204,7 +204,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -218,7 +218,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -232,7 +232,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -246,7 +246,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -260,7 +260,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point ))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
           }
@@ -273,7 +273,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -287,7 +287,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -301,7 +301,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -315,7 +315,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -330,7 +330,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point ))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -345,7 +345,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
@@ -359,7 +359,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               ima.startAnimation(my_animation)
 
-              pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
+              pendingComparisonDataList.add(PendingComparisonData(ima,point  ))
 
               compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
