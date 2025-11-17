@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var uiOperationsManager: UiOperationsManager
+    private lateinit var uiLogicDelegate:UiLogicDelegate
 
     private val viewModel: ViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         uiOperationsManager = UiOperationsManager(this)
+        uiLogicDelegate = UiLogicDelegate()
         add_Image_into_list(imagelist)
 
         transform(list)
@@ -364,7 +366,7 @@ class MainActivity : AppCompatActivity() {
 
            }
 
-            animation(imagelist,collected_image,list[0],binding.imageViewOne,this,viewModel,tag_one,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[0],binding.imageViewOne,this,viewModel,tag_one,compare_list)
 
         }
 
@@ -381,7 +383,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[1],binding.imageViewTwo,this,viewModel,tag_two,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[1],binding.imageViewTwo,this,viewModel,tag_two,compare_list)
 
 
         }
@@ -400,7 +402,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[2],binding.imageViewThree,this,viewModel,tag_three,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[2],binding.imageViewThree,this,viewModel,tag_three,compare_list)
 
 
         }
@@ -418,7 +420,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[3],binding.imageViewFour,this,viewModel,tag_four,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[3],binding.imageViewFour,this,viewModel,tag_four,compare_list)
 
         }
 
@@ -434,7 +436,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[4],binding.imageViewFive,this,viewModel,tag_five,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[4],binding.imageViewFive,this,viewModel,tag_five,compare_list)
 
 
 
@@ -453,7 +455,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[5],binding.imageViewSix,this,viewModel,tag_six,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[5],binding.imageViewSix,this,viewModel,tag_six,compare_list)
 
         }
 
@@ -469,7 +471,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[6],binding.imageViewSeven,this,viewModel,tag_seven,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[6],binding.imageViewSeven,this,viewModel,tag_seven,compare_list)
 
         }
 
@@ -485,7 +487,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[7],binding.imageViewEight,this,viewModel,tag_eight,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[7],binding.imageViewEight,this,viewModel,tag_eight,compare_list)
 
         }
 
@@ -501,7 +503,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[8],binding.imageViewNine,this,viewModel,tag_nine,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[8],binding.imageViewNine,this,viewModel,tag_nine,compare_list)
 
         }
 
@@ -517,7 +519,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[9],binding.imageViewTen,this,viewModel,tag_ten,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[9],binding.imageViewTen,this,viewModel,tag_ten,compare_list)
 
         }
         binding.imageViewEleven.setOnClickListener {
@@ -532,7 +534,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[10],binding.imageViewEleven,this,viewModel,tag_eleven,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[10],binding.imageViewEleven,this,viewModel,tag_eleven,compare_list)
 
 
         }
@@ -548,7 +550,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            animation(imagelist,collected_image,list[11],binding.imageViewTwelve,this,viewModel,tag_twelve,compare_list)
+            uiLogicDelegate.animation(imagelist,collected_image,list[11],binding.imageViewTwelve,this,viewModel,tag_twelve,compare_list)
 
         }
 

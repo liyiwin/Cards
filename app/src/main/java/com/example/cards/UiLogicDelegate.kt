@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.Toast
 
 
-
+class UiLogicDelegate {
 
 fun set_enable(unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, pendingComparisonDataList: MutableList<PendingComparisonData> ){
 
@@ -487,3 +487,6 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
   ima.startAnimation(my_animation)
 
 }
+
+}
+
