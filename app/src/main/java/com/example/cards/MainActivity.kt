@@ -13,13 +13,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private var compare_list = mutableListOf<PendingComparisonData>()
+    private var pendingComparisonDataList = mutableListOf<PendingComparisonData>()
 
-    private var collected_image = mutableListOf<ImageView>()
+    private var selectedImages = mutableListOf<ImageView>()
 
     private var list = mutableListOf<Int>()
 
-    private var imagelist = mutableListOf<ImageView>()
+    private var unmatchedDataList = mutableListOf<ImageView>()
 
     var tag_one  = "back"
 
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         uiOperationsManager = UiOperationsManager(this)
         uiLogicDelegate = UiLogicDelegate(viewModel)
-        add_Image_into_list(imagelist)
+        add_Image_into_list(unmatchedDataList)
 
         transform(list)
 
@@ -358,15 +358,15 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewOne.isEnabled = false
 
-            collected_image.add(binding.imageViewOne)
+            selectedImages.add(binding.imageViewOne)
 
-           if (collected_image.size == 2){
+           if (selectedImages.size == 2){
 
-               uiOperationsManager.set_disable(imagelist)
+               uiOperationsManager.set_disable(unmatchedDataList)
 
            }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[0],binding.imageViewOne,this,tag_one,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[0],binding.imageViewOne,this,tag_one,pendingComparisonDataList)
 
         }
 
@@ -375,15 +375,15 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewTwo.isEnabled = false
 
-            collected_image.add(binding.imageViewTwo)
+            selectedImages.add(binding.imageViewTwo)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[1],binding.imageViewTwo,this,tag_two,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[1],binding.imageViewTwo,this,tag_two,pendingComparisonDataList)
 
 
         }
@@ -392,17 +392,17 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewThree.isEnabled = false
 
-            collected_image.add(binding.imageViewThree)
+            selectedImages.add(binding.imageViewThree)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
 
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[2],binding.imageViewThree,this,tag_three,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[2],binding.imageViewThree,this,tag_three,pendingComparisonDataList)
 
 
         }
@@ -411,16 +411,16 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewFour.isEnabled = false
 
-            collected_image.add(binding.imageViewFour)
+            selectedImages.add(binding.imageViewFour)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[3],binding.imageViewFour,this,tag_four,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[3],binding.imageViewFour,this,tag_four,pendingComparisonDataList)
 
         }
 
@@ -428,15 +428,15 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewFive.isEnabled = false
 
-            collected_image.add(binding.imageViewFive)
+            selectedImages.add(binding.imageViewFive)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[4],binding.imageViewFive,this,tag_five,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[4],binding.imageViewFive,this,tag_five,pendingComparisonDataList)
 
 
 
@@ -446,16 +446,16 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewSix.isEnabled = false
 
-            collected_image.add(binding.imageViewSix)
+            selectedImages.add(binding.imageViewSix)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[5],binding.imageViewSix,this,tag_six,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[5],binding.imageViewSix,this,tag_six,pendingComparisonDataList)
 
         }
 
@@ -463,15 +463,15 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewSeven.isEnabled = false
 
-            collected_image.add(binding.imageViewSeven)
+            selectedImages.add(binding.imageViewSeven)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[6],binding.imageViewSeven,this,tag_seven,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[6],binding.imageViewSeven,this,tag_seven,pendingComparisonDataList)
 
         }
 
@@ -479,15 +479,15 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewEight.isEnabled = false
 
-            collected_image.add(binding.imageViewEight)
+            selectedImages.add(binding.imageViewEight)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[7],binding.imageViewEight,this,tag_eight,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[7],binding.imageViewEight,this,tag_eight,pendingComparisonDataList)
 
         }
 
@@ -495,15 +495,15 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewNine.isEnabled = false
 
-            collected_image.add(binding.imageViewNine)
+            selectedImages.add(binding.imageViewNine)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[8],binding.imageViewNine,this,tag_nine,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[8],binding.imageViewNine,this,tag_nine,pendingComparisonDataList)
 
         }
 
@@ -511,30 +511,30 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewTen.isEnabled = false
 
-            collected_image.add(binding.imageViewTen)
+            selectedImages.add(binding.imageViewTen)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[9],binding.imageViewTen,this,tag_ten,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[9],binding.imageViewTen,this,tag_ten,pendingComparisonDataList)
 
         }
         binding.imageViewEleven.setOnClickListener {
 
             binding.imageViewEleven.isEnabled = false
 
-            collected_image.add(binding.imageViewEleven)
+            selectedImages.add(binding.imageViewEleven)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[10],binding.imageViewEleven,this,tag_eleven,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[10],binding.imageViewEleven,this,tag_eleven,pendingComparisonDataList)
 
 
         }
@@ -542,15 +542,15 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewTwelve.isEnabled = false
 
-            collected_image.add(binding.imageViewTwelve)
+            selectedImages.add(binding.imageViewTwelve)
 
-            if (collected_image.size == 2){
+            if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(imagelist )
+                uiOperationsManager.set_disable(unmatchedDataList )
 
             }
 
-            uiLogicDelegate.animation(imagelist,collected_image,list[11],binding.imageViewTwelve,this,tag_twelve,compare_list)
+            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[11],binding.imageViewTwelve,this,tag_twelve,pendingComparisonDataList)
 
         }
 
