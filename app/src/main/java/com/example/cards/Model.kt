@@ -11,28 +11,17 @@ import android.widget.Toast
 
 fun set_enable(image_list: MutableList<ImageView>,collected_image: MutableList<ImageView>, list: MutableList<Compared_data> ){
 
-    val my_list = mutableListOf<ImageView>()
-
-     my_list.addAll(image_list)
-
     if (list.size == 2){
 
         collected_image.clear()
 
-        if (collected_image.size == 0){
+        for (i in 0 until image_list.size){
 
-            for (i in 0 until my_list.size){
-
-                my_list[i].isEnabled  = true
-
-            }
+            image_list[i].isEnabled  = true
 
         }
 
-
-
     }
-
 
 }
 
