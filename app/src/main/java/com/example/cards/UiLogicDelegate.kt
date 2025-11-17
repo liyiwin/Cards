@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.Toast
 
 
-class UiLogicDelegate {
+class UiLogicDelegate (private val carTagManager: ICardTagManager){
 
 fun set_enable(unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, pendingComparisonDataList: MutableList<PendingComparisonData> ){
 
@@ -27,7 +27,7 @@ fun set_enable(unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
 
 
-fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, context: Context, viewModel: ViewModel, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>) {
+fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, context: Context, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>) {
 
     if (pendingComparisonDataList.size == 2 ){
 
@@ -46,9 +46,9 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
         point_one != point_two -> {
 
-            shake(ima_one, point_one, context,  viewModel, copiedPendingComparisonDataList, unmatchedDataList,selectedImages, "one")
+            shake(ima_one, point_one, context, copiedPendingComparisonDataList, unmatchedDataList,selectedImages, "one")
 
-            shake(ima_two, point_two, context,  viewModel, copiedPendingComparisonDataList, unmatchedDataList,selectedImages, "two")
+            shake(ima_two, point_two, context, copiedPendingComparisonDataList, unmatchedDataList,selectedImages, "two")
 
 
         }
@@ -93,7 +93,7 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
 
 
-fun shake(ima: ImageView, point:Int, context:Context, viewModel: ViewModel, pendingComparisonDataList: MutableList<PendingComparisonData>, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, flag:String) {
+fun shake(ima: ImageView, point:Int, context:Context, pendingComparisonDataList: MutableList<PendingComparisonData>, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, flag:String) {
 
 
 val animation = AnimationUtils.loadAnimation(context,R.anim.shake)
@@ -105,7 +105,7 @@ val animation = AnimationUtils.loadAnimation(context,R.anim.shake)
 
         override fun onAnimationEnd(animation: Animation?) {
 
-            animation(unmatchedDataList,selectedImages,point,ima,context,viewModel,"front",pendingComparisonDataList)
+            animation(unmatchedDataList,selectedImages,point,ima,context,"front",pendingComparisonDataList)
 
             // flag two 代表動畫完成
 
@@ -185,7 +185,7 @@ fun disappear (pendingComparisonDataList: MutableList<PendingComparisonData>, un
 
 
 
-fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableList<ImageView>, point:Int, ima: ImageView, context: Context, viewModel:ViewModel, tag:String, pendingComparisonDataList:MutableList<PendingComparisonData>){
+fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableList<ImageView>, point:Int, ima: ImageView, context: Context, tag:String, pendingComparisonDataList:MutableList<PendingComparisonData>){
 
     var my_animation =  AnimationUtils.loadAnimation(context, R.anim.back)
 
@@ -198,7 +198,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
           "one" ->{
 
-            viewModel.set_ima_one_tag("front")
+              carTagManager.set_ima_one_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context,R.anim.font)
 
@@ -206,13 +206,13 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
           }
 
           "two" ->{
 
-            viewModel.set_ima_two_tag("front")
+              carTagManager.set_ima_two_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -220,13 +220,13 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
           }
 
           "three"->{
 
-            viewModel.set_ima_three_tag("front")
+              carTagManager.set_ima_three_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -234,13 +234,13 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
           }
 
           "four"->{
 
-            viewModel.set_ima_four_tag("front")
+              carTagManager.set_ima_four_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -248,13 +248,13 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
           }
 
           "five"->{
 
-            viewModel.set_ima_five_tag("front")
+              carTagManager.set_ima_five_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -262,12 +262,12 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
           }
 
           "six"->{
 
-            viewModel.set_ima_six_tag("front")
+              carTagManager.set_ima_six_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -275,13 +275,13 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
           }
 
           "seven"->{
 
-            viewModel.set_ima_seven_tag("front")
+              carTagManager.set_ima_seven_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -289,13 +289,13 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
           }
 
           "eight"->{
 
-              viewModel.set_ima_eight_tag("front")
+              carTagManager.set_ima_eight_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -303,13 +303,13 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
           }
 
           "nine"->{
 
-              viewModel.set_ima_nine_tag("front")
+              carTagManager.set_ima_nine_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -317,14 +317,14 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
           }
 
           "ten"->{
 
 
-            viewModel.set_ima_ten_tag("front")
+              carTagManager.set_ima_ten_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -332,14 +332,14 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
 
           }
 
           "eleven"->{
 
-            viewModel.set_ima_eleven_tag("front")
+              carTagManager.set_ima_eleven_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -347,13 +347,13 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
           }
 
           "twelve"->{
 
-           viewModel.set_ima_twelve_tag("front")
+              carTagManager.set_ima_twelve_tag("front")
 
               my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
 
@@ -361,7 +361,7 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               pendingComparisonDataList.add(PendingComparisonData(ima,point,"front"  ))
 
-              compare (pendingComparisonDataList,context,viewModel,unmatchedDataList,selectedImages)
+              compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
 
 
           }
@@ -382,75 +382,75 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
 
               "one" ->{
 
-                  viewModel.set_ima_one_tag("back")
+                  carTagManager.set_ima_one_tag("back")
 
               }
 
               "two" ->{
 
-                  viewModel.set_ima_two_tag("back")
+                  carTagManager.set_ima_two_tag("back")
 
               }
 
               "three"->{
 
-                  viewModel.set_ima_three_tag("back")
+                  carTagManager.set_ima_three_tag("back")
 
               }
 
               "four"->{
 
-                  viewModel.set_ima_four_tag("back")
+                  carTagManager.set_ima_four_tag("back")
 
               }
 
               "five"->{
 
-                  viewModel.set_ima_five_tag("back")
+                  carTagManager.set_ima_five_tag("back")
 
               }
 
               "six"->{
 
-                  viewModel.set_ima_six_tag("back")
+                  carTagManager.set_ima_six_tag("back")
 
               }
 
               "seven"->{
 
-                  viewModel.set_ima_seven_tag("back")
+                  carTagManager.set_ima_seven_tag("back")
 
               }
 
               "eight"->{
 
-                  viewModel.set_ima_eight_tag("back")
+                  carTagManager.set_ima_eight_tag("back")
 
               }
 
               "nine"->{
 
-                  viewModel.set_ima_nine_tag("back")
+                  carTagManager.set_ima_nine_tag("back")
 
               }
 
               "ten"->{
 
 
-                  viewModel.set_ima_ten_tag("back")
+                  carTagManager.set_ima_ten_tag("back")
 
 
               }
 
               "eleven"->{
 
-                  viewModel.set_ima_eleven_tag("back")
+                  carTagManager.set_ima_eleven_tag("back")
 
               }
 
               "twelve"->{
 
-                  viewModel.set_ima_twelve_tag("back")
+                  carTagManager.set_ima_twelve_tag("back")
 
 
               }
