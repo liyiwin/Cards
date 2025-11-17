@@ -31,24 +31,24 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
     if (pendingComparisonDataList.size == 2 ){
 
-    val this_list = mutableListOf<PendingComparisonData>()
+    val copiedPendingComparisonDataList = mutableListOf<PendingComparisonData>()
 
-    this_list.addAll(pendingComparisonDataList)
+    copiedPendingComparisonDataList.addAll(pendingComparisonDataList)
 
     pendingComparisonDataList.clear()
 
-    val ima_one = this_list[0].ima
-    val ima_two = this_list[1].ima
-    val point_one = this_list[0].point
-    val point_two = this_list[1].point
+    val ima_one = copiedPendingComparisonDataList[0].ima
+    val ima_two = copiedPendingComparisonDataList[1].ima
+    val point_one = copiedPendingComparisonDataList[0].point
+    val point_two = copiedPendingComparisonDataList[1].point
 
     when {
 
         point_one != point_two -> {
 
-            shake(ima_one, point_one, context, "front", viewModel, this_list, unmatchedDataList,selectedImages, "one")
+            shake(ima_one, point_one, context, "front", viewModel, copiedPendingComparisonDataList, unmatchedDataList,selectedImages, "one")
 
-            shake(ima_two, point_two, context, "front", viewModel, this_list, unmatchedDataList,selectedImages, "two")
+            shake(ima_two, point_two, context, "front", viewModel, copiedPendingComparisonDataList, unmatchedDataList,selectedImages, "two")
 
 
         }
@@ -70,9 +70,9 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
                         handler.removeCallbacks(this)
 
-                        disappear(this_list, unmatchedDataList,selectedImages, ima_one, context, "one")
+                        disappear(copiedPendingComparisonDataList, unmatchedDataList,selectedImages, ima_one, context, "one")
 
-                        disappear(this_list, unmatchedDataList,selectedImages, ima_two, context, "two")
+                        disappear(copiedPendingComparisonDataList, unmatchedDataList,selectedImages, ima_two, context, "two")
 
                     }
 
