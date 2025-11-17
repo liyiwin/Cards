@@ -67,9 +67,9 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
                         handler.removeCallbacks(this)
 
-                        disappear(copiedPendingComparisonDataList, unmatchedDataList,selectedImages, ima_one, context, "one")
+                        disappear( unmatchedDataList,selectedImages, ima_one,ima_two, context, "one")
 
-                        disappear(copiedPendingComparisonDataList, unmatchedDataList,selectedImages, ima_two, context, "two")
+                        disappear( unmatchedDataList,selectedImages, ima_two,ima_one, context, "two")
 
                     }
 
@@ -130,7 +130,7 @@ ima.startAnimation(animation)
 
 
 
-fun disappear (pendingComparisonDataList: MutableList<PendingComparisonData>, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, ima: ImageView, context:Context, flag:String){
+fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, ima: ImageView,pairedImage:ImageView, context:Context, flag:String){
 
     val animation = AnimationUtils.loadAnimation(context,R.anim.disappear)
 
@@ -147,13 +147,9 @@ fun disappear (pendingComparisonDataList: MutableList<PendingComparisonData>, un
 
             if (flag == "two"){
 
-                val ima_one = pendingComparisonDataList[0].ima
+                unmatchedDataList.remove(ima)
 
-                val ima_two = pendingComparisonDataList[1].ima
-
-                unmatchedDataList.remove(ima_one)
-
-                unmatchedDataList.remove(ima_two)
+                unmatchedDataList.remove(pairedImage)
 
                 set_enable(unmatchedDataList,selectedImages)
 
