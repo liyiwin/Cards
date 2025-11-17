@@ -133,7 +133,7 @@ ima.startAnimation(animation)
 
 
 
-fun disappear (list: MutableList<PendingComparisonData>, image_list: MutableList<ImageView>, collected_image: MutableList<ImageView>, ima: ImageView, context:Context, flag:String){
+fun disappear (pendingComparisonDataList: MutableList<PendingComparisonData>, image_list: MutableList<ImageView>, collected_image: MutableList<ImageView>, ima: ImageView, context:Context, flag:String){
 
     val animation = AnimationUtils.loadAnimation(context,R.anim.disappear)
 
@@ -150,15 +150,15 @@ fun disappear (list: MutableList<PendingComparisonData>, image_list: MutableList
 
             if (flag == "two"){
 
-                val ima_one = list[0].ima
+                val ima_one = pendingComparisonDataList[0].ima
 
-                val ima_two = list[1].ima
+                val ima_two = pendingComparisonDataList[1].ima
 
                 image_list.remove(ima_one)
 
                 image_list.remove(ima_two)
 
-                set_enable(image_list,collected_image, list)
+                set_enable(image_list,collected_image, pendingComparisonDataList)
 
                 if (image_list.size  == 0 ){
 
