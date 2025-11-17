@@ -9,9 +9,7 @@ import android.widget.Toast
 
 class UiLogicDelegate (private val carTagManager: ICardTagManager){
 
-fun set_enable(unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, pendingComparisonDataList: MutableList<PendingComparisonData> ){
-
-    if (pendingComparisonDataList.size == 2){
+fun set_enable(unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>){
 
         selectedImages.clear()
 
@@ -21,7 +19,6 @@ fun set_enable(unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
         }
 
-    }
 
 }
 
@@ -111,7 +108,7 @@ val animation = AnimationUtils.loadAnimation(context,R.anim.shake)
 
             if (flag == "two"){
 
-                set_enable(unmatchedDataList,selectedImages, pendingComparisonDataList )
+                set_enable(unmatchedDataList,selectedImages)
 
             }
 
@@ -158,7 +155,7 @@ fun disappear (pendingComparisonDataList: MutableList<PendingComparisonData>, un
 
                 unmatchedDataList.remove(ima_two)
 
-                set_enable(unmatchedDataList,selectedImages, pendingComparisonDataList)
+                set_enable(unmatchedDataList,selectedImages)
 
                 if (unmatchedDataList.size  == 0 ){
 
