@@ -105,7 +105,7 @@ val animation = AnimationUtils.loadAnimation(context,R.anim.shake)
 
         override fun onAnimationEnd(animation: Animation?) {
 
-            animation(unmatchedDataList,selectedImages,point,ima,context,"front",pendingComparisonDataList)
+            rotateCardUpsideDown(ima,context)
 
             // flag two 代表動畫完成
 
@@ -487,6 +487,333 @@ fun animation(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableLi
   ima.startAnimation(my_animation)
 
 }
+
+  fun rotateCardUpright(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableList<ImageView>, point:Int, ima: ImageView, context: Context, pendingComparisonDataList:MutableList<PendingComparisonData>){
+
+      var my_animation =  AnimationUtils.loadAnimation(context, R.anim.back)
+
+      my_animation.setAnimationListener(object: Animation.AnimationListener{
+          override fun onAnimationEnd(animation: Animation?) {
+
+                  when(ima.tag.toString()){
+
+                      "one" ->{
+
+                          carTagManager.set_ima_one_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context,R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+                      }
+
+                      "two" ->{
+
+                          carTagManager.set_ima_two_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+                      }
+
+                      "three"->{
+
+                          carTagManager.set_ima_three_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+                      }
+
+                      "four"->{
+
+                          carTagManager.set_ima_four_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+                      }
+
+                      "five"->{
+
+                          carTagManager.set_ima_five_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point ))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+                      }
+
+                      "six"->{
+
+                          carTagManager.set_ima_six_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+                      }
+
+                      "seven"->{
+
+                          carTagManager.set_ima_seven_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+                      }
+
+                      "eight"->{
+
+                          carTagManager.set_ima_eight_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+                      }
+
+                      "nine"->{
+
+                          carTagManager.set_ima_nine_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+                      }
+
+                      "ten"->{
+
+
+                          carTagManager.set_ima_ten_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point ))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+
+                      }
+
+                      "eleven"->{
+
+                          carTagManager.set_ima_eleven_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+                      }
+
+                      "twelve"->{
+
+                          carTagManager.set_ima_twelve_tag("front")
+
+                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                          ima.startAnimation(my_animation)
+
+                          pendingComparisonDataList.add(PendingComparisonData(ima,point  ))
+
+                          compare (pendingComparisonDataList,context,unmatchedDataList,selectedImages)
+
+
+                      }
+
+
+                  }
+
+
+
+
+          }
+
+          override fun onAnimationRepeat(animation: Animation?) {
+
+
+
+          }
+
+          override fun onAnimationStart(animation: Animation?) {
+
+
+
+          }
+
+
+      })
+
+
+
+      ima.startAnimation(my_animation)
+
+  }
+
+  fun rotateCardUpsideDown(ima: ImageView, context: Context){
+
+      var my_animation =  AnimationUtils.loadAnimation(context, R.anim.back)
+
+      my_animation.setAnimationListener(object: Animation.AnimationListener{
+          override fun onAnimationEnd(animation: Animation?) {
+
+
+
+                  when(ima.tag.toString()){
+
+                      "one" ->{
+
+                          carTagManager.set_ima_one_tag("back")
+
+                      }
+
+                      "two" ->{
+
+                          carTagManager.set_ima_two_tag("back")
+
+                      }
+
+                      "three"->{
+
+                          carTagManager.set_ima_three_tag("back")
+
+                      }
+
+                      "four"->{
+
+                          carTagManager.set_ima_four_tag("back")
+
+                      }
+
+                      "five"->{
+
+                          carTagManager.set_ima_five_tag("back")
+
+                      }
+
+                      "six"->{
+
+                          carTagManager.set_ima_six_tag("back")
+
+                      }
+
+                      "seven"->{
+
+                          carTagManager.set_ima_seven_tag("back")
+
+                      }
+
+                      "eight"->{
+
+                          carTagManager.set_ima_eight_tag("back")
+
+                      }
+
+                      "nine"->{
+
+                          carTagManager.set_ima_nine_tag("back")
+
+                      }
+
+                      "ten"->{
+
+
+                          carTagManager.set_ima_ten_tag("back")
+
+
+                      }
+
+                      "eleven"->{
+
+                          carTagManager.set_ima_eleven_tag("back")
+
+                      }
+
+                      "twelve"->{
+
+                          carTagManager.set_ima_twelve_tag("back")
+
+
+                      }
+
+
+                  }
+
+                  my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+
+                  ima.startAnimation(my_animation)
+
+
+
+
+          }
+
+          override fun onAnimationRepeat(animation: Animation?) {
+
+
+
+          }
+
+          override fun onAnimationStart(animation: Animation?) {
+
+
+
+          }
+
+
+      })
+
+
+
+      ima.startAnimation(my_animation)
+
+  }
 
 }
 

@@ -20,31 +20,6 @@ class MainActivity : AppCompatActivity() {
     private var list = mutableListOf<Int>()
 
     private var unmatchedDataList = mutableListOf<ImageView>()
-
-    var tag_one  = "back"
-
-    var tag_two  = "back"
-
-    var tag_three  = "back"
-
-    var tag_four  = "back"
-
-    var tag_five  = "back"
-
-    var tag_six  = "back"
-
-    var tag_seven  = "back"
-
-    var tag_eight  = "back"
-
-    var tag_nine  = "back"
-
-    var tag_ten  = "back"
-
-    var tag_eleven  = "back"
-
-    var tag_twelve  = "back"
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var uiOperationsManager: UiOperationsManager
     private lateinit var uiLogicDelegate:UiLogicDelegate
@@ -64,8 +39,6 @@ class MainActivity : AppCompatActivity() {
         // tag_one
 
         val tag_one_Observer = Observer<String>{
-
-            tag_one = it
 
             if (it == "front"){
 
@@ -89,8 +62,6 @@ class MainActivity : AppCompatActivity() {
 
         val tag_two_Observer = Observer<String>{
 
-            tag_two = it
-
             if (it == "front"){
 
                 val number = list[1]
@@ -112,8 +83,6 @@ class MainActivity : AppCompatActivity() {
         // tag_three
 
         val tag_three_Observer = Observer<String>{
-
-            tag_three = it
 
             if (it == "front"){
 
@@ -137,8 +106,6 @@ class MainActivity : AppCompatActivity() {
 
         val tag_four_Observer = Observer<String>{
 
-            tag_four =it
-
             if (it == "front"){
 
                 val number = list[3]
@@ -160,8 +127,6 @@ class MainActivity : AppCompatActivity() {
         // tag_five
 
         val tag_five_Observer = Observer<String>{
-
-            tag_five =it
 
             if (it == "front"){
 
@@ -186,8 +151,6 @@ class MainActivity : AppCompatActivity() {
 
         val tag_six_Observer = Observer<String>{
 
-            tag_six = it
-
             if (it == "front"){
 
                 val number = list[5]
@@ -208,8 +171,6 @@ class MainActivity : AppCompatActivity() {
         // tag_seven
 
         val tag_seven_Observer = Observer<String>{
-
-            tag_seven = it
 
             if (it == "front"){
 
@@ -235,8 +196,6 @@ class MainActivity : AppCompatActivity() {
 
         val tag_eight_Observer = Observer<String>{
 
-            tag_eight = it
-
             if (it == "front"){
 
                 val number = list[7]
@@ -260,8 +219,6 @@ class MainActivity : AppCompatActivity() {
 
         val tag_nine_Observer = Observer<String>{
 
-            tag_nine = it
-
             if (it == "front"){
 
                 val number = list[8]
@@ -283,8 +240,6 @@ class MainActivity : AppCompatActivity() {
         // tag_ten
 
         val tag_ten_Observer = Observer<String>{
-
-            tag_ten = it
 
             if (it == "front"){
 
@@ -309,8 +264,6 @@ class MainActivity : AppCompatActivity() {
 
         val tag_eleven_Observer = Observer<String>{
 
-            tag_eleven = it
-
             if (it == "front"){
 
                 val number = list[10]
@@ -332,8 +285,6 @@ class MainActivity : AppCompatActivity() {
         // tag_twelve
 
         val tag_twelve_Observer = Observer<String>{
-
-            tag_twelve = it
 
             if (it == "front"){
 
@@ -366,7 +317,7 @@ class MainActivity : AppCompatActivity() {
 
            }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[0],binding.imageViewOne,this,tag_one,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[0],binding.imageViewOne,this,pendingComparisonDataList)
 
         }
 
@@ -383,7 +334,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[1],binding.imageViewTwo,this,tag_two,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[1],binding.imageViewTwo,this,pendingComparisonDataList)
 
 
         }
@@ -402,7 +353,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[2],binding.imageViewThree,this,tag_three,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[2],binding.imageViewThree,this,pendingComparisonDataList)
 
 
         }
@@ -420,7 +371,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[3],binding.imageViewFour,this,tag_four,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[3],binding.imageViewFour,this,pendingComparisonDataList)
 
         }
 
@@ -436,7 +387,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[4],binding.imageViewFive,this,tag_five,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[4],binding.imageViewFive,this,pendingComparisonDataList)
 
 
 
@@ -455,7 +406,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[5],binding.imageViewSix,this,tag_six,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[5],binding.imageViewSix,this,pendingComparisonDataList)
 
         }
 
@@ -471,7 +422,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[6],binding.imageViewSeven,this,tag_seven,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[6],binding.imageViewSeven,this,pendingComparisonDataList)
 
         }
 
@@ -487,7 +438,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[7],binding.imageViewEight,this,tag_eight,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[7],binding.imageViewEight,this,pendingComparisonDataList)
 
         }
 
@@ -503,7 +454,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[8],binding.imageViewNine,this,tag_nine,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[8],binding.imageViewNine,this,pendingComparisonDataList)
 
         }
 
@@ -519,7 +470,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[9],binding.imageViewTen,this,tag_ten,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[9],binding.imageViewTen,this,pendingComparisonDataList)
 
         }
         binding.imageViewEleven.setOnClickListener {
@@ -534,7 +485,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[10],binding.imageViewEleven,this,tag_eleven,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[10],binding.imageViewEleven,this,pendingComparisonDataList)
 
 
         }
@@ -550,7 +501,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            uiLogicDelegate.animation(unmatchedDataList,selectedImages,list[11],binding.imageViewTwelve,this,tag_twelve,pendingComparisonDataList)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[11],binding.imageViewTwelve,this,pendingComparisonDataList)
 
         }
 
