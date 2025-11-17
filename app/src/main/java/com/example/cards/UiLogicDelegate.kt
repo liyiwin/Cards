@@ -28,16 +28,12 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
     if (pendingComparisonDataList.size == 2 ){
 
-    val copiedPendingComparisonDataList = mutableListOf<PendingComparisonData>()
-
-    copiedPendingComparisonDataList.addAll(pendingComparisonDataList)
+    val ima_one = pendingComparisonDataList[0].ima
+    val ima_two = pendingComparisonDataList[1].ima
+    val point_one = pendingComparisonDataList[0].point
+    val point_two = pendingComparisonDataList[1].point
 
     pendingComparisonDataList.clear()
-
-    val ima_one = copiedPendingComparisonDataList[0].ima
-    val ima_two = copiedPendingComparisonDataList[1].ima
-    val point_one = copiedPendingComparisonDataList[0].point
-    val point_two = copiedPendingComparisonDataList[1].point
 
     when {
 
