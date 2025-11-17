@@ -6,20 +6,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 
-fun set_disable(image_list: MutableList<ImageView>){
 
-    val my_list = mutableListOf<ImageView>()
-
-    my_list.addAll(image_list)
-
-//    my_list.removeAll(colleted_list)
-
-    for (i in 0 until my_list.size){
-
-        my_list[i].isEnabled  = false
-
-    }
-}
 
 
 fun set_enable(image_list: MutableList<ImageView>,collected_image: MutableList<ImageView>, list: MutableList<Compared_data> ){

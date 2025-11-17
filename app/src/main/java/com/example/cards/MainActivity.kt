@@ -361,7 +361,7 @@ class MainActivity : AppCompatActivity() {
 
            if (collected_image.size == 2){
 
-               set_disable(imagelist)
+               uiOperationsManager.set_disable(imagelist)
 
            }
 
@@ -378,7 +378,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
             }
 
@@ -395,7 +395,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
 
 
@@ -414,7 +414,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
 
             }
@@ -431,7 +431,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
             }
 
@@ -449,7 +449,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
 
             }
@@ -466,7 +466,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
             }
 
@@ -482,7 +482,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
             }
 
@@ -498,7 +498,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
             }
 
@@ -514,7 +514,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
             }
 
@@ -529,7 +529,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
             }
 
@@ -545,7 +545,7 @@ class MainActivity : AppCompatActivity() {
 
             if (collected_image.size == 2){
 
-                set_disable(imagelist )
+                uiOperationsManager.set_disable(imagelist )
 
             }
 

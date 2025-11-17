@@ -81,4 +81,20 @@ class UiOperationsManager(private val activity:AppCompatActivity) {
 
 
     }
+
+
+    fun set_disable(image_list: MutableList<ImageView>){
+
+        val my_list = mutableListOf<ImageView>()
+
+        my_list.addAll(image_list)
+
+//    my_list.removeAll(colleted_list)
+
+        for (i in 0 until my_list.size){
+
+            my_list[i].isEnabled  = false
+
+        }
+    }
 }
