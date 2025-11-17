@@ -6,6 +6,8 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.cards.databinding.ActivityMainBinding
+import com.example.cards.ui_operation.IUiOperationsManager
+import com.example.cards.ui_operation.UiOperationsManager
 
 
 class MainActivity : AppCompatActivity() {
@@ -45,14 +47,14 @@ class MainActivity : AppCompatActivity() {
     var tag_twelve  = "back"
 
     private lateinit var binding: ActivityMainBinding
-
+    private lateinit var uiOperationsManager: UiOperationsManager
 
     private val viewModel: ViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        uiOperationsManager = UiOperationsManager(this)
         add_Image_into_list(imagelist)
 
         transform(list)
@@ -68,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[0]
 
-                set_mycard_Image(binding.imageViewOne,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewOne,number)
 
             }
 
@@ -92,7 +94,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[1]
 
-                set_mycard_Image(binding.imageViewTwo,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewTwo,number)
             }
 
             if (it == "back"){
@@ -116,7 +118,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[2]
 
-                set_mycard_Image(binding.imageViewThree,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewThree,number)
             }
 
             if (it == "back"){
@@ -140,7 +142,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[3]
 
-                set_mycard_Image(binding.imageViewFour,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewFour,number)
             }
 
             if (it == "back"){
@@ -164,7 +166,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[4]
 
-                set_mycard_Image(binding.imageViewFive,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewFive,number)
             }
 
             if (it == "back"){
@@ -189,7 +191,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[5]
 
-                set_mycard_Image(binding.imageViewSix,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewSix,number)
             }
 
             if (it == "back"){
@@ -212,7 +214,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[6]
 
-                set_mycard_Image(binding.imageViewSeven,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewSeven,number)
             }
 
             if (it == "back"){
@@ -238,7 +240,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[7]
 
-                set_mycard_Image(binding.imageViewEight,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewEight,number)
             }
 
             if (it == "back"){
@@ -263,7 +265,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[8]
 
-                set_mycard_Image(binding.imageViewNine,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewNine,number)
             }
 
             if (it == "back"){
@@ -287,7 +289,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[9]
 
-                set_mycard_Image(binding.imageViewTen,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewTen,number)
             }
 
             if (it == "back"){
@@ -312,7 +314,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[10]
 
-                set_mycard_Image(binding.imageViewEleven,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewEleven,number)
             }
 
             if (it == "back"){
@@ -336,7 +338,7 @@ class MainActivity : AppCompatActivity() {
 
                 val number = list[11]
 
-                set_mycard_Image(binding.imageViewTwelve,number)
+                uiOperationsManager.set_mycard_Image(binding.imageViewTwelve,number)
             }
 
             if (it == "back"){
