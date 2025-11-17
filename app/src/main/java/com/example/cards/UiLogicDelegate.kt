@@ -43,9 +43,9 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
         point_one != point_two -> {
 
-            shake(ima_one, context, copiedPendingComparisonDataList, unmatchedDataList,selectedImages, "one")
+            shake(ima_one, context, unmatchedDataList,selectedImages, "one")
 
-            shake(ima_two, context, copiedPendingComparisonDataList, unmatchedDataList,selectedImages, "two")
+            shake(ima_two, context, unmatchedDataList,selectedImages, "two")
 
 
         }
@@ -90,7 +90,7 @@ fun compare (pendingComparisonDataList: MutableList<PendingComparisonData>, cont
 
 
 
-fun shake(ima: ImageView, context:Context, pendingComparisonDataList: MutableList<PendingComparisonData>, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, flag:String) {
+fun shake(ima: ImageView, context:Context, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, flag:String) {
 
 
 val animation = AnimationUtils.loadAnimation(context,R.anim.shake)
