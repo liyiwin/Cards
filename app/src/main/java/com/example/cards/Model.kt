@@ -9,7 +9,7 @@ import android.widget.Toast
 
 
 
-fun set_enable(image_list: MutableList<ImageView>,collected_image: MutableList<ImageView>, list: MutableList<Compared_data> ){
+fun set_enable(image_list: MutableList<ImageView>,collected_image: MutableList<ImageView>, list: MutableList<PendingComparisonData> ){
 
     if (list.size == 2){
 
@@ -27,11 +27,11 @@ fun set_enable(image_list: MutableList<ImageView>,collected_image: MutableList<I
 
 
 
-fun compare (list: MutableList<Compared_data>,context: Context,viewModel: ViewModel,image_list: MutableList<ImageView>,collected_image: MutableList<ImageView>) {
+fun compare (list: MutableList<PendingComparisonData>, context: Context, viewModel: ViewModel, image_list: MutableList<ImageView>, collected_image: MutableList<ImageView>) {
 
     if (list.size == 2 ){
 
-    val this_list = mutableListOf<Compared_data>()
+    val this_list = mutableListOf<PendingComparisonData>()
 
     this_list.addAll(list)
 
@@ -93,7 +93,7 @@ fun compare (list: MutableList<Compared_data>,context: Context,viewModel: ViewMo
 
 
 
-fun shake(ima: ImageView,point:Int,context:Context,tag: String,viewModel: ViewModel,list: MutableList<Compared_data>,image_list: MutableList<ImageView>,collected_image: MutableList<ImageView>,flag:String) {
+fun shake(ima: ImageView, point:Int, context:Context, tag: String, viewModel: ViewModel, list: MutableList<PendingComparisonData>, image_list: MutableList<ImageView>, collected_image: MutableList<ImageView>, flag:String) {
 
 
 val animation = AnimationUtils.loadAnimation(context,R.anim.shake)
@@ -133,7 +133,7 @@ ima.startAnimation(animation)
 
 
 
-fun disappear (list: MutableList<Compared_data>,image_list: MutableList<ImageView>,collected_image: MutableList<ImageView>,ima: ImageView,context:Context,flag:String){
+fun disappear (list: MutableList<PendingComparisonData>, image_list: MutableList<ImageView>, collected_image: MutableList<ImageView>, ima: ImageView, context:Context, flag:String){
 
     val animation = AnimationUtils.loadAnimation(context,R.anim.disappear)
 
@@ -185,9 +185,9 @@ fun disappear (list: MutableList<Compared_data>,image_list: MutableList<ImageVie
 
 
 
-fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<ImageView>,point:Int,ima: ImageView,context: Context,viewModel:ViewModel,tag:String,list:MutableList<Compared_data>){
+fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<ImageView>,point:Int,ima: ImageView,context: Context,viewModel:ViewModel,tag:String,list:MutableList<PendingComparisonData>){
 
-  var my_animation =  AnimationUtils.loadAnimation(context, R.anim.back)
+    var my_animation =  AnimationUtils.loadAnimation(context, R.anim.back)
 
     my_animation.setAnimationListener(object: Animation.AnimationListener{
     override fun onAnimationEnd(animation: Animation?) {
@@ -204,7 +204,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"))
+              list.add(PendingComparisonData(ima,point,"front"))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -218,7 +218,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -232,7 +232,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -246,7 +246,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -260,7 +260,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
           }
@@ -273,7 +273,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -287,7 +287,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"))
+              list.add(PendingComparisonData(ima,point,"front"))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -301,7 +301,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -315,7 +315,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -330,7 +330,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -345,7 +345,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
 
@@ -359,7 +359,7 @@ fun animation(imagelist:MutableList<ImageView>,collected_image:MutableList<Image
 
               ima.startAnimation(my_animation)
 
-              list.add(Compared_data(ima,point,"front"  ))
+              list.add(PendingComparisonData(ima,point,"front"  ))
 
               compare (list,context,viewModel,imagelist,collected_image)
 

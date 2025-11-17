@@ -6,7 +6,6 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.cards.databinding.ActivityMainBinding
-import com.example.cards.ui_operation.IUiOperationsManager
 import com.example.cards.ui_operation.UiOperationsManager
 
 
@@ -14,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private var compare_list = mutableListOf<Compared_data>()
+    private var compare_list = mutableListOf<PendingComparisonData>()
 
     private var collected_image = mutableListOf<ImageView>()
 
