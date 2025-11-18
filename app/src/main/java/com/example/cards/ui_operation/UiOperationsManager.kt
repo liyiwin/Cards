@@ -5,6 +5,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.example.cards.R
 import com.example.cards.ViewModel
 import com.example.cards.databinding.ActivityMainBinding
@@ -365,4 +366,50 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         }
     }
 
+
+
+    fun setCarTagObserver(imageName:String,listener: (String) -> Unit){
+        val observer = Observer<String>{
+            listener.invoke(it)
+        }
+        when(imageName){
+            "imageViewOne" ->{
+                viewModel.get_ima_one_tag().observe(activity,observer)
+            }
+            "imageViewTwo" ->{
+                viewModel.get_ima_two_tag().observe(activity,observer)
+            }
+            "imageViewThree" ->{
+                viewModel.get_ima_three_tag().observe(activity,observer)
+            }
+            "imageViewFour"->{
+                viewModel.get_ima_four_tag().observe(activity,observer)
+            }
+            "imageViewFive"->{
+                viewModel.get_ima_five_tag().observe(activity,observer)
+            }
+            "imageViewSix"->{
+                viewModel.get_ima_six_tag().observe(activity,observer)
+            }
+            "imageViewSeven"->{
+                viewModel.get_ima_seven_tag().observe(activity,observer)
+            }
+            "imageViewEight"->{
+                viewModel.get_ima_eight_tag().observe(activity,observer)
+            }
+            "imageViewNine"->{
+                viewModel.get_ima_nine_tag().observe(activity,observer)
+            }
+            "imageViewTen"->{
+                viewModel.get_ima_ten_tag().observe(activity,observer)
+            }
+            "imageViewEleven"->{
+                viewModel.get_ima_eleven_tag().observe(activity,observer)
+            }
+            "imageViewTwelve"->{
+                viewModel.get_ima_twelve_tag().observe(activity,observer)
+            }
+        }
+
+    }
 }
