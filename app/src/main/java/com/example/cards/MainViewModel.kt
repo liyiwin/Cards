@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.cards.ui_model.UiEvent
+import com.example.cards.ui_model.ViewModelEvent
+import kotlinx.coroutines.flow.MutableSharedFlow
 
 class MainViewModel: ViewModel() {
 
@@ -33,7 +36,10 @@ class MainViewModel: ViewModel() {
 
     val unMatchedData_IsLocked = MutableLiveData<Boolean>()
 
+    private val _uiEvent = MutableSharedFlow<UiEvent>()
+    val uiEvent get() = _uiEvent
 
+    private val _viewModelEvent = MutableSharedFlow<ViewModelEvent>()
 
     fun setImageTag(imageName:String,tag: String){
         when(imageName){
