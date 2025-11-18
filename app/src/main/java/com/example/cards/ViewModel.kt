@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 
-class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMatchedDataManger {
+class ViewModel(app: Application): AndroidViewModel(app) {
 
     val ima_one_tag = MutableLiveData<String>()
 
@@ -31,85 +31,6 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMa
     val ima_twelve_tag = MutableLiveData<String>()
 
     val unMatchedData_IsLocked = MutableLiveData<Boolean>()
-
-
-    override fun set_ima_one_tag(tag:String){
-
-        ima_one_tag.value = tag
-    }
-
-
-    override fun set_ima_two_tag(tag:String){
-
-        ima_two_tag.value = tag
-
-    }
-
-    override fun set_ima_three_tag(tag:String){
-
-        ima_three_tag.value = tag
-
-
-    }
-
-
-    override fun set_ima_four_tag(tag:String){
-        ima_four_tag.value = tag
-
-    }
-
-
-    override fun set_ima_five_tag(tag:String){
-
-        ima_five_tag.value = tag
-
-
-    }
-
-    override fun set_ima_six_tag(tag:String){
-
-        ima_six_tag.value =tag
-
-
-    }
-
-    override fun set_ima_seven_tag(tag:String){
-
-        ima_seven_tag.value= tag
-
-    }
-
-    override fun set_ima_eight_tag(tag:String){
-
-        ima_eight_tag.value = tag
-
-    }
-
-
-    override fun set_ima_nine_tag(tag:String){
-
-        ima_nine_tag.value = tag
-
-    }
-
-    override fun set_ima_ten_tag(tag:String){
-
-        ima_ten_tag.value = tag
-
-
-    }
-
-    override fun set_ima_eleven_tag(tag:String){
-
-        ima_eleven_tag.value = tag
-
-    }
-
-    override fun set_ima_twelve_tag(tag:String){
-
-         ima_twelve_tag.value = tag
-
-    }
 
     fun setImageTag(imageName:String,tag: String){
         when(imageName){
@@ -145,11 +66,11 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMa
         }
     }
 
-    override fun lockUnMatchedData() {
+    fun lockUnMatchedData() {
         unMatchedData_IsLocked.value = true
     }
 
-    override fun unlLockUnMatchedData() {
+    fun unlLockUnMatchedData() {
         unMatchedData_IsLocked.value = false
     }
 
