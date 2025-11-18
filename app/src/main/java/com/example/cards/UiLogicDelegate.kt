@@ -19,32 +19,10 @@ class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager,priv
         val cardList = createCardList();
         unmatchedDataList.addAll(cardList)
         setUnMatchedCardIsLockedObserve()
-
-        setCardTagObserve(cardList[0])
-        setCardTagObserve(cardList[1])
-        setCardTagObserve(cardList[2])
-        setCardTagObserve(cardList[3])
-        setCardTagObserve(cardList[4])
-        setCardTagObserve(cardList[5])
-        setCardTagObserve(cardList[6])
-        setCardTagObserve(cardList[7])
-        setCardTagObserve(cardList[8])
-        setCardTagObserve(cardList[9])
-        setCardTagObserve(cardList[10])
-        setCardTagObserve(cardList[11])
-
-        setCardClickAction(cardList[0])
-        setCardClickAction(cardList[1])
-        setCardClickAction(cardList[2])
-        setCardClickAction(cardList[3])
-        setCardClickAction(cardList[4])
-        setCardClickAction(cardList[5])
-        setCardClickAction(cardList[6])
-        setCardClickAction(cardList[7])
-        setCardClickAction(cardList[8])
-        setCardClickAction(cardList[9])
-        setCardClickAction(cardList[10])
-        setCardClickAction(cardList[11])
+        for (i in 0 .. 11) {
+            setCardTagObserve(cardList[i])
+            setCardClickAction(cardList[i])
+        }
 
     }
 
