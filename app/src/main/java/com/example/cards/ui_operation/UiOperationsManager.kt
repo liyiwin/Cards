@@ -116,22 +116,6 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         }
     }
 
-    fun getImageTag(imageName:String): MutableLiveData<String> {
-       return when(imageName){
-            "imageViewOne" -> viewModel.get_ima_one_tag()
-            "imageViewTwo" -> viewModel.get_ima_two_tag()
-            "imageViewThree" -> viewModel.get_ima_three_tag()
-            "imageViewFour"->  viewModel.get_ima_four_tag()
-            "imageViewFive"-> viewModel.get_ima_five_tag()
-            "imageViewSix"->viewModel.get_ima_six_tag()
-            "imageViewSeven"->viewModel.get_ima_seven_tag()
-            "imageViewEight"->viewModel.get_ima_eight_tag()
-            "imageViewNine"->viewModel.get_ima_nine_tag()
-            "imageViewTen"->viewModel.get_ima_ten_tag()
-            "imageViewEleven"-> viewModel.get_ima_eleven_tag()
-            else ->  viewModel.get_ima_twelve_tag()
-        }
-    }
 
     fun getImageView(imageName: String):ImageView{
         when(imageName){
@@ -186,7 +170,7 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         val observer = Observer<String>{
             listener.invoke(it)
         }
-        val imageTag = getImageTag(imageName)
+        val imageTag = viewModel.getImageTag(imageName)
         imageTag.observe(activity,observer)
     }
 }

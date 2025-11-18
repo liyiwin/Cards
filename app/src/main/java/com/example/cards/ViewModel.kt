@@ -38,25 +38,12 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMa
         ima_one_tag.value = tag
     }
 
-    fun get_ima_one_tag():MutableLiveData<String>{
-
-        return ima_one_tag
-
-    }
 
     override fun set_ima_two_tag(tag:String){
 
         ima_two_tag.value = tag
 
     }
-
-    fun get_ima_two_tag():MutableLiveData<String>{
-
-        return ima_two_tag
-
-    }
-
-
 
     override fun set_ima_three_tag(tag:String){
 
@@ -65,33 +52,17 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMa
 
     }
 
-    fun get_ima_three_tag():MutableLiveData<String>{
-
-        return ima_three_tag
-
-    }
 
     override fun set_ima_four_tag(tag:String){
         ima_four_tag.value = tag
 
     }
 
-    fun get_ima_four_tag():MutableLiveData<String>{
-
-        return ima_four_tag
-
-    }
 
     override fun set_ima_five_tag(tag:String){
 
         ima_five_tag.value = tag
 
-
-    }
-
-    fun get_ima_five_tag():MutableLiveData<String>{
-
-        return ima_five_tag
 
     }
 
@@ -102,21 +73,9 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMa
 
     }
 
-    fun get_ima_six_tag():MutableLiveData<String>{
-
-        return ima_six_tag
-
-    }
-
     override fun set_ima_seven_tag(tag:String){
 
         ima_seven_tag.value= tag
-
-    }
-
-    fun get_ima_seven_tag():MutableLiveData<String>{
-
-        return ima_seven_tag
 
     }
 
@@ -126,11 +85,6 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMa
 
     }
 
-    fun get_ima_eight_tag():MutableLiveData<String>{
-
-        return ima_eight_tag
-
-    }
 
     override fun set_ima_nine_tag(tag:String){
 
@@ -138,21 +92,10 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMa
 
     }
 
-    fun get_ima_nine_tag():MutableLiveData<String>{
-
-        return ima_nine_tag
-
-    }
     override fun set_ima_ten_tag(tag:String){
 
         ima_ten_tag.value = tag
 
-
-    }
-
-    fun get_ima_ten_tag():MutableLiveData<String>{
-
-        return ima_ten_tag
 
     }
 
@@ -162,22 +105,27 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMa
 
     }
 
-    fun get_ima_eleven_tag():MutableLiveData<String>{
-
-        return ima_eleven_tag
-
-    }
-
     override fun set_ima_twelve_tag(tag:String){
 
          ima_twelve_tag.value = tag
 
     }
 
-    fun get_ima_twelve_tag():MutableLiveData<String>{
-
-        return ima_twelve_tag
-
+    fun getImageTag(imageName:String): MutableLiveData<String> {
+        return when(imageName){
+            "imageViewOne" -> ima_one_tag
+            "imageViewTwo" -> ima_two_tag
+            "imageViewThree" -> ima_three_tag
+            "imageViewFour"->  ima_four_tag
+            "imageViewFive"-> ima_five_tag
+            "imageViewSix"-> ima_six_tag
+            "imageViewSeven"-> ima_seven_tag
+            "imageViewEight"-> ima_eight_tag
+            "imageViewNine"-> ima_nine_tag
+            "imageViewTen"-> ima_ten_tag
+            "imageViewEleven"-> ima_eleven_tag
+            else ->  ima_twelve_tag
+        }
     }
 
     override fun lockUnMatchedData() {
