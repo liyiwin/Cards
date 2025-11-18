@@ -29,277 +29,20 @@ class UiLogicDelegate (private val carTagManager: ICardTagManager,private val un
             }
 
         }
-
         viewModel.getUnMatchedDataIsLocked().observe(this,unMatchedDataIsLocked)
 
-        // tag_one
-
-        val tag_one_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[0]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewOne,number)
-
-            }
-
-            if (it == "back"){
-
-                binding.imageViewOne.setImageResource(R.drawable.background)
-
-            }
-
-        }
-
-        viewModel.get_ima_one_tag().observe(this,tag_one_Observer)
-
-        // tag_two
-
-        val tag_two_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[1]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewTwo,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewTwo.setImageResource(R.drawable.background)
-
-
-            }
-
-        }
-
-        viewModel.get_ima_two_tag().observe(this,tag_two_Observer)
-
-        // tag_three
-
-        val tag_three_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[2]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewThree,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewThree.setImageResource(R.drawable.background)
-
-
-            }
-
-        }
-
-        viewModel.get_ima_three_tag().observe(this,tag_three_Observer)
-
-        // tag_four
-
-        val tag_four_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[3]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewFour,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewFour.setImageResource(R.drawable.background)
-
-
-            }
-
-        }
-
-        viewModel.get_ima_four_tag().observe(this,tag_four_Observer)
-
-        // tag_five
-
-        val tag_five_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[4]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewFive,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewFive.setImageResource(R.drawable.background)
-
-
-            }
-
-
-        }
-
-        viewModel.get_ima_five_tag().observe(this,tag_five_Observer)
-
-        // tag_six
-
-        val tag_six_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[5]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewSix,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewSix.setImageResource(R.drawable.background)
-
-            }
-
-        }
-
-        viewModel.get_ima_six_tag().observe(this,tag_six_Observer)
-
-        // tag_seven
-
-        val tag_seven_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[6]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewSeven,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewSeven.setImageResource(R.drawable.background)
-
-            }
-
-
-        }
-
-        viewModel.get_ima_seven_tag().observe(this,tag_seven_Observer)
-
-
-
-        // tag_eight
-
-        val tag_eight_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[7]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewEight,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewEight.setImageResource(R.drawable.background)
-
-
-            }
-
-
-        }
-
-        viewModel.get_ima_eight_tag().observe(this,tag_eight_Observer)
-
-        // tag_nine
-
-        val tag_nine_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[8]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewNine,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewNine.setImageResource(R.drawable.background)
-
-
-            }
-
-        }
-
-        viewModel.get_ima_nine_tag().observe(this,tag_nine_Observer)
-
-        // tag_ten
-
-        val tag_ten_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[9]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewTen,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewTen.setImageResource(R.drawable.background)
-
-
-            }
-
-
-        }
-
-        viewModel.get_ima_ten_tag().observe(this,tag_ten_Observer)
-
-        // tag_eleven
-
-        val tag_eleven_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[10]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewEleven,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewEleven.setImageResource(R.drawable.background)
-
-            }
-
-        }
-
-        viewModel.get_ima_eleven_tag().observe(this,tag_eleven_Observer)
-
-
-        // tag_twelve
-
-        val tag_twelve_Observer = Observer<String>{
-
-            if (it == "front"){
-
-                val number = list[11]
-
-                uiOperationsManager.set_mycard_Image(binding.imageViewTwelve,number)
-            }
-
-            if (it == "back"){
-
-                binding.imageViewTwelve.setImageResource(R.drawable.background)
-
-
-            }
-
-        }
-
-        viewModel.get_ima_twelve_tag().observe(this,tag_twelve_Observer)
-
+        setCarTagObserve("imageViewOne",list[0])
+        setCarTagObserve("imageViewTwo",list[1])
+        setCarTagObserve("imageViewThree",list[2])
+        setCarTagObserve("imageViewFour",list[3])
+        setCarTagObserve("imageViewFive",list[4])
+        setCarTagObserve("imageViewSix",list[5])
+        setCarTagObserve("imageViewSeven",list[6])
+        setCarTagObserve("imageViewEight",list[7])
+        setCarTagObserve("imageViewNine",list[8])
+        setCarTagObserve("imageViewTen",list[9])
+        setCarTagObserve("imageViewEleven",list[10])
+        setCarTagObserve("imageViewTwelve",list[11])
 
         setCareClickAction("imageViewOne",list[0])
         setCareClickAction("imageViewTwo",list[1])
@@ -733,7 +476,24 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
       })
 
   }
+    private fun setCarTagObserve(imageName:String,number:Int){
 
+        uiOperationsManager.setCarTagObserver(imageName){
+
+            if (it == "front"){
+
+                uiOperationsManager.set_mycard_Image(imageName,number)
+            }
+
+            if (it == "back"){
+
+                uiOperationsManager.setCardBackImage(imageName)
+
+
+            }
+
+        }
+    }
     private fun setCareClickAction(imageName:String,number:Int){
         uiOperationsManager.setCarClickListener(imageName) {
 
