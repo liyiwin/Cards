@@ -4,9 +4,10 @@ import android.content.Context
 import com.example.cards.ui_model.ImageData
 import com.example.cards.ui_operation.AnimationEndListener
 import com.example.cards.ui_operation.UiOperationsManager
+import com.example.cards.utils.ITimerUtils
 
 
-class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager){
+class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager,private val timerUtils: ITimerUtils){
 
     private val pendingComparisonDataList = mutableListOf<PendingComparisonData>()
     private var selectedImages = mutableListOf<ImageData>()
