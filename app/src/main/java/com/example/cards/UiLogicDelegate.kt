@@ -1,6 +1,5 @@
 package com.example.cards
 
-import android.content.Context
 import com.example.cards.ui_model.ImageData
 import com.example.cards.ui_operation.AnimationEndListener
 import com.example.cards.ui_operation.UiOperationsManager
