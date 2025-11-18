@@ -373,5 +373,62 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
             }
         }
     }
+    fun getDrawable(number: Int):Int{
+        when(number){
+            1->return R.drawable.a
+            2->return R.drawable.two
+            3->return R.drawable.three
+            4->return R.drawable.four
+            5->return R.drawable.five
+            6->return R.drawable.six
+            7->return R.drawable.seven
+            8->return R.drawable.eight
+            9->return R.drawable.nine
+            10->return R.drawable.ten
+            11->return R.drawable.eleven
+            12->return R.drawable.twelve
+            else->return R.drawable.thirteen
+        }
+    }
+    fun getImageView(imageName: String):ImageView{
+        when(imageName){
+            "imageViewOne" ->{
+                return binding.imageViewOne
+            }
+            "imageViewTwo" ->{
+                return binding.imageViewTwo
+            }
+            "imageViewThree" ->{
+                return binding.imageViewThree
+            }
+            "imageViewFour"->{
+                return binding.imageViewFour
+            }
+            "imageViewFive"->{
+                return binding.imageViewFive
+            }
+            "imageViewSix"->{
+                return binding.imageViewSix
+            }
+            "imageViewSeven"->{
+                return binding.imageViewSeven
+            }
+            "imageViewEight"->{
+                return binding.imageViewEight
+            }
+            "imageViewNine"->{
+                return binding.imageViewNine
+            }
+            "imageViewTen"->{
+                return binding.imageViewTen
+            }
+            "imageViewEleven"->{
+                return binding.imageViewEleven
+            }
+            else->{
+                return binding.imageViewTwelve
+            }
+        }
+    }
 
 }
