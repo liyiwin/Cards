@@ -1,8 +1,8 @@
 package com.example.cards
 
-import android.widget.ImageView
+import com.example.cards.ui_model.ImageData
 
 data class PendingComparisonData (
- val ima: ImageView,
+ val ima: ImageData,
  val point:Int
 )

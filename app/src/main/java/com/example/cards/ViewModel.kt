@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 
-class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager {
+class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMatchedDataManger {
 
     val ima_one_tag = MutableLiveData<String>()
 
@@ -29,6 +29,8 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager {
     val ima_eleven_tag = MutableLiveData<String>()
 
     val ima_twelve_tag = MutableLiveData<String>()
+
+    val unMatchedData_IsLocked = MutableLiveData<Boolean>()
 
 
     override fun set_ima_one_tag(tag:String){
@@ -178,6 +180,17 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager {
 
     }
 
+    override fun lockUnMatchedData() {
+        unMatchedData_IsLocked.value = true
+    }
+
+    override fun unlLockUnMatchedData() {
+        unMatchedData_IsLocked.value = false
+    }
+
+    fun getUnMatchedDataIsLocked():MutableLiveData<Boolean>{
+        return unMatchedData_IsLocked
+    }
 
 
 }

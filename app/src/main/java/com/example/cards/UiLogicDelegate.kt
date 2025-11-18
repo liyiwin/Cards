@@ -1,32 +1,25 @@
 package com.example.cards
 
 import android.content.Context
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.Toast
+import com.example.cards.ui_model.ImageData
+import com.example.cards.ui_operation.AnimationEndListener
+import com.example.cards.ui_operation.UiOperationsManager
 
 
-class UiLogicDelegate (private val carTagManager: ICardTagManager){
+class UiLogicDelegate (private val carTagManager: ICardTagManager,private val unMatchedDataManger: IUnMatchedDataManger,private val uiOperationsManager: UiOperationsManager){
 
     private val pendingComparisonDataList = mutableListOf<PendingComparisonData>()
 
-fun set_enable(unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>){
+fun set_enable( selectedImages: MutableList<ImageData>){
 
         selectedImages.clear()
-
-        for (i in 0 until unmatchedDataList.size){
-
-            unmatchedDataList[i].isEnabled  = true
-
-        }
-
+        unMatchedDataManger.unlLockUnMatchedData()
 
 }
 
 
 
-fun compare (context: Context, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>) {
+fun compare ( unmatchedDataList: MutableList<ImageData>, selectedImages: MutableList<ImageData>) {
 
     if (pendingComparisonDataList.size == 2 ){
 
@@ -41,9 +34,9 @@ fun compare (context: Context, unmatchedDataList: MutableList<ImageView>, select
 
         point_one != point_two -> {
 
-            shake(ima_one, context, unmatchedDataList,selectedImages, "one")
+            shake(ima_one,selectedImages, "one")
 
-            shake(ima_two, context, unmatchedDataList,selectedImages, "two")
+            shake(ima_two,selectedImages, "two")
 
 
         }
@@ -65,9 +58,9 @@ fun compare (context: Context, unmatchedDataList: MutableList<ImageView>, select
 
                         handler.removeCallbacks(this)
 
-                        disappear( unmatchedDataList,selectedImages, ima_one,ima_two, context, "one")
+                        disappear( unmatchedDataList,selectedImages, ima_one,ima_two, "one")
 
-                        disappear( unmatchedDataList,selectedImages, ima_two,ima_one, context, "two")
+                        disappear( unmatchedDataList,selectedImages, ima_two,ima_one, "two")
 
                     }
 
@@ -88,39 +81,27 @@ fun compare (context: Context, unmatchedDataList: MutableList<ImageView>, select
 
 
 
-fun shake(ima: ImageView, context:Context, unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, flag:String) {
+fun shake(ima: ImageData, selectedImages: MutableList<ImageData>, flag:String) {
 
 
-val animation = AnimationUtils.loadAnimation(context,R.anim.shake)
 
-    animation.setAnimationListener(object:Animation.AnimationListener{
-        override fun onAnimationRepeat(animation: Animation?) {
+   uiOperationsManager.performShackAnimation(ima.imageName,object:AnimationEndListener{
 
-        }
+        override fun onAnimationEnd() {
 
-        override fun onAnimationEnd(animation: Animation?) {
-
-            rotateCardUpsideDown(ima,context)
+            rotateCardUpsideDown(ima)
 
             // flag two 代表動畫完成
 
             if (flag == "two"){
 
-                set_enable(unmatchedDataList,selectedImages)
+                set_enable(selectedImages)
 
             }
 
         }
 
-        override fun onAnimationStart(animation: Animation?) {
-
-        }
-
-
     })
-
-
-ima.startAnimation(animation)
 
 }
 
@@ -128,18 +109,13 @@ ima.startAnimation(animation)
 
 
 
-fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: MutableList<ImageView>, ima: ImageView,pairedImage:ImageView, context:Context, flag:String){
+fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: MutableList<ImageData>, ima: ImageData, pairedImage:ImageData, flag:String){
 
-    val animation = AnimationUtils.loadAnimation(context,R.anim.disappear)
+    uiOperationsManager.performDisappearAnimation(ima.imageName,object:AnimationEndListener{
 
-    animation.setAnimationListener(object:Animation.AnimationListener{
-        override fun onAnimationRepeat(animation: Animation?) {
+        override fun onAnimationEnd() {
 
-        }
-
-        override fun onAnimationEnd(animation: Animation?) {
-
-            ima.isEnabled = false
+            uiOperationsManager.setImageIsEnabled(ima.imageName,false)
 
             // flag two 代表動畫完成
 
@@ -149,11 +125,11 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                 unmatchedDataList.remove(pairedImage)
 
-                set_enable(unmatchedDataList,selectedImages)
+                set_enable(selectedImages)
 
                 if (unmatchedDataList.size  == 0 ){
 
-                    Toast.makeText(context,"遊戲完成",Toast.LENGTH_LONG).show()
+                    uiOperationsManager.toastMessage("遊戲完成")
 
                 }
 
@@ -162,195 +138,162 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
         }
 
-        override fun onAnimationStart(animation: Animation?) {
-
-        }
-
     })
-
-    ima.startAnimation(animation)
-
 
 }
 
 
 
 
-  fun rotateCardUpright(unmatchedDataList:MutableList<ImageView>, selectedImages:MutableList<ImageView>, point:Int, ima: ImageView, context: Context){
+  fun rotateCardUpright(unmatchedDataList:MutableList<ImageData>, selectedImages:MutableList<ImageData>, point:Int, ima: ImageData){
 
-      var my_animation =  AnimationUtils.loadAnimation(context, R.anim.back)
+      uiOperationsManager.performBackAnimation(ima.imageName,object: AnimationEndListener{
+          override fun onAnimationEnd() {
 
-      my_animation.setAnimationListener(object: Animation.AnimationListener{
-          override fun onAnimationEnd(animation: Animation?) {
+                  when(ima.imageName){
 
-                  when(ima.tag.toString()){
-
-                      "one" ->{
+                      "imageViewOne"->{
 
                           carTagManager.set_ima_one_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context,R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
                       }
 
-                      "two" ->{
+                      "imageViewTwo" ->{
 
                           carTagManager.set_ima_two_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
                       }
 
-                      "three"->{
+                      "imageViewThree"->{
 
                           carTagManager.set_ima_three_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
                       }
 
-                      "four"->{
+                      "imageViewFour"->{
 
                           carTagManager.set_ima_four_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
                       }
 
-                      "five"->{
+                      "imageViewFive"->{
 
                           carTagManager.set_ima_five_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point ))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
                       }
 
-                      "six"->{
+                      "imageViewSix"->{
 
                           carTagManager.set_ima_six_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
                       }
 
-                      "seven"->{
+                      "imageViewSeven"->{
 
                           carTagManager.set_ima_seven_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
                       }
 
-                      "eight"->{
+                      "imageViewEight"->{
 
                           carTagManager.set_ima_eight_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
                       }
 
-                      "nine"->{
+                      "imageViewNine"->{
 
                           carTagManager.set_ima_nine_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
                       }
 
-                      "ten"->{
+                      "imageViewTen"->{
 
 
                           carTagManager.set_ima_ten_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point ))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
 
                       }
 
-                      "eleven"->{
+                      "imageViewEleven"->{
 
                           carTagManager.set_ima_eleven_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
                       }
 
-                      "twelve"->{
+                      "imageViewTwelve"->{
 
                           carTagManager.set_ima_twelve_tag("front")
 
-                          my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
-
-                          ima.startAnimation(my_animation)
+                          uiOperationsManager.performFrontAnimation(ima.imageName)
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point  ))
 
-                          compare (context,unmatchedDataList,selectedImages)
+                          compare (unmatchedDataList,selectedImages)
 
 
                       }
@@ -363,93 +306,72 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
           }
 
-          override fun onAnimationRepeat(animation: Animation?) {
-
-
-
-          }
-
-          override fun onAnimationStart(animation: Animation?) {
-
-
-
-          }
-
-
-      })
-
-
-
-      ima.startAnimation(my_animation)
+          })
 
   }
 
-  fun rotateCardUpsideDown(ima: ImageView, context: Context){
+  fun rotateCardUpsideDown(ima: ImageData){
 
-      var my_animation =  AnimationUtils.loadAnimation(context, R.anim.back)
+      uiOperationsManager.performBackAnimation(ima.imageName,object: AnimationEndListener{
+          override fun onAnimationEnd() {
 
-      my_animation.setAnimationListener(object: Animation.AnimationListener{
-          override fun onAnimationEnd(animation: Animation?) {
+                  when(ima.imageName){
 
-
-
-                  when(ima.tag.toString()){
-
-                      "one" ->{
+                      "imageViewOne" ->{
 
                           carTagManager.set_ima_one_tag("back")
 
                       }
 
-                      "two" ->{
+                      "imageViewTwo" ->{
 
                           carTagManager.set_ima_two_tag("back")
 
                       }
 
-                      "three"->{
+                      "imageViewThree"->{
 
                           carTagManager.set_ima_three_tag("back")
 
                       }
 
-                      "four"->{
+                      "imageViewFour"->{
 
                           carTagManager.set_ima_four_tag("back")
 
                       }
 
-                      "five"->{
+                      "imageViewFive"->{
 
                           carTagManager.set_ima_five_tag("back")
 
                       }
 
-                      "six"->{
+                      "imageViewSix"->{
 
                           carTagManager.set_ima_six_tag("back")
 
                       }
 
-                      "seven"->{
+                      "imageViewSeven"->{
 
                           carTagManager.set_ima_seven_tag("back")
 
                       }
 
-                      "eight"->{
+                      "imageViewEight"->{
 
                           carTagManager.set_ima_eight_tag("back")
 
                       }
 
-                      "nine"->{
+                      "imageViewNine"->{
 
                           carTagManager.set_ima_nine_tag("back")
 
                       }
 
-                      "ten"->{
+                      "imageViewTen"->{
 
 
                           carTagManager.set_ima_ten_tag("back")
@@ -457,13 +379,13 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                       }
 
-                      "eleven"->{
+                      "imageViewEleven"->{
 
                           carTagManager.set_ima_eleven_tag("back")
 
                       }
 
-                      "twelve"->{
+                      "imageViewTwelve"->{
 
                           carTagManager.set_ima_twelve_tag("back")
 
@@ -473,22 +395,8 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
                   }
 
-                  my_animation = AnimationUtils.loadAnimation(context, R.anim.font)
+                  uiOperationsManager.performFrontAnimation(ima.imageName)
 
-                  ima.startAnimation(my_animation)
-
-
-
-
-          }
-
-          override fun onAnimationRepeat(animation: Animation?) {
-
-
-
-          }
-
-          override fun onAnimationStart(animation: Animation?) {
 
 
 
@@ -496,10 +404,6 @@ fun disappear (unmatchedDataList: MutableList<ImageView>, selectedImages: Mutabl
 
 
       })
-
-
-
-      ima.startAnimation(my_animation)
 
   }
 

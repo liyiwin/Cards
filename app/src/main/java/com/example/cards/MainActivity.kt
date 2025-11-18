@@ -6,17 +6,18 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.cards.databinding.ActivityMainBinding
+import com.example.cards.ui_model.ImageData
 import com.example.cards.ui_operation.UiOperationsManager
 
 
 class MainActivity : AppCompatActivity() {
 
 
-    private var selectedImages = mutableListOf<ImageView>()
+    private var selectedImages = mutableListOf<ImageData>()
 
     private var list = mutableListOf<Int>()
 
-    private var unmatchedDataList = mutableListOf<ImageView>()
+    private var unmatchedDataList = mutableListOf<ImageData>()
     private lateinit var binding: ActivityMainBinding
     private lateinit var uiOperationsManager: UiOperationsManager
     private lateinit var uiLogicDelegate:UiLogicDelegate
@@ -26,12 +27,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        uiOperationsManager = UiOperationsManager(this)
-        uiLogicDelegate = UiLogicDelegate(viewModel)
+        uiOperationsManager = UiOperationsManager(this,binding)
+        uiLogicDelegate = UiLogicDelegate(viewModel,viewModel,uiOperationsManager)
         add_Image_into_list(unmatchedDataList)
 
         transform(list)
 
+        val unMatchedDataIsLocked = Observer<Boolean>{ isLocked ->
+            val isEnabled = !isLocked
+            unmatchedDataList.forEach {
+                uiOperationsManager.setImageIsEnabled(it.imageName,isEnabled)
+            }
+
+        }
+
+        viewModel.getUnMatchedDataIsLocked().observe(this,unMatchedDataIsLocked)
 
         // tag_one
 
@@ -306,15 +316,14 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewOne.isEnabled = false
 
-            selectedImages.add(binding.imageViewOne)
+            selectedImages.add(ImageData("imageViewOne"))
 
            if (selectedImages.size == 2){
-
-               uiOperationsManager.set_disable(unmatchedDataList)
+               viewModel.lockUnMatchedData()
 
            }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[0],binding.imageViewOne,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[0],ImageData("imageViewOne"))
 
         }
 
@@ -323,15 +332,14 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewTwo.isEnabled = false
 
-            selectedImages.add(binding.imageViewTwo)
+            selectedImages.add(ImageData("imageViewTwo"))
 
             if (selectedImages.size == 2){
 
-                uiOperationsManager.set_disable(unmatchedDataList )
-
+                viewModel.lockUnMatchedData()
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[1],binding.imageViewTwo,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[1],ImageData("imageViewTwo"))
 
 
         }
@@ -340,17 +348,13 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewThree.isEnabled = false
 
-            selectedImages.add(binding.imageViewThree)
+            selectedImages.add(ImageData("imageViewThree"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
-
-
-
+                viewModel.lockUnMatchedData()
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[2],binding.imageViewThree,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[2],ImageData("imageViewThree"))
 
 
         }
@@ -359,16 +363,14 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewFour.isEnabled = false
 
-            selectedImages.add(binding.imageViewFour)
+            selectedImages.add(ImageData("imageViewFour"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
-
+                viewModel.lockUnMatchedData()
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[3],binding.imageViewFour,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[3],ImageData("imageViewFour"))
 
         }
 
@@ -376,15 +378,14 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewFive.isEnabled = false
 
-            selectedImages.add(binding.imageViewFive)
+            selectedImages.add(ImageData("imageViewFive"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
+                viewModel.lockUnMatchedData()
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[4],binding.imageViewFive,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[4],ImageData("imageViewFive"))
 
 
 
@@ -394,16 +395,13 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewSix.isEnabled = false
 
-            selectedImages.add(binding.imageViewSix)
+            selectedImages.add(ImageData("imageViewSix"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
-
-
+                viewModel.lockUnMatchedData()
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[5],binding.imageViewSix,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[5],ImageData("imageViewSix"))
 
         }
 
@@ -411,15 +409,13 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewSeven.isEnabled = false
 
-            selectedImages.add(binding.imageViewSeven)
+            selectedImages.add(ImageData("imageViewSeven"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
-
+                viewModel.lockUnMatchedData()
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[6],binding.imageViewSeven,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[6],ImageData("imageViewSeven"))
 
         }
 
@@ -427,15 +423,13 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewEight.isEnabled = false
 
-            selectedImages.add(binding.imageViewEight)
+            selectedImages.add(ImageData("imageViewEight"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
-
+                viewModel.lockUnMatchedData()
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[7],binding.imageViewEight,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[7],ImageData("imageViewEight"))
 
         }
 
@@ -443,15 +437,13 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewNine.isEnabled = false
 
-            selectedImages.add(binding.imageViewNine)
+            selectedImages.add(ImageData("imageViewNine"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
-
+                viewModel.lockUnMatchedData()
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[8],binding.imageViewNine,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[8],ImageData("imageViewNine"))
 
         }
 
@@ -459,30 +451,26 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewTen.isEnabled = false
 
-            selectedImages.add(binding.imageViewTen)
+            selectedImages.add(ImageData("imageViewTen"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
-
+                viewModel.lockUnMatchedData()
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[9],binding.imageViewTen,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[9],ImageData("imageViewTen"))
 
         }
         binding.imageViewEleven.setOnClickListener {
 
             binding.imageViewEleven.isEnabled = false
 
-            selectedImages.add(binding.imageViewEleven)
+            selectedImages.add(ImageData("imageViewEleven"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
-
+                viewModel.lockUnMatchedData()
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[10],binding.imageViewEleven,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[10],ImageData("imageViewEleven"))
 
 
         }
@@ -490,15 +478,14 @@ class MainActivity : AppCompatActivity() {
 
             binding.imageViewTwelve.isEnabled = false
 
-            selectedImages.add(binding.imageViewTwelve)
+            selectedImages.add(ImageData("imageViewTwelve"))
 
             if (selectedImages.size == 2){
-
-                uiOperationsManager.set_disable(unmatchedDataList )
+               viewModel.lockUnMatchedData()
 
             }
 
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[11],binding.imageViewTwelve,this)
+            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[11],ImageData("imageViewTwelve"))
 
         }
 
@@ -506,20 +493,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun add_Image_into_list(list: MutableList<ImageView>){
+    fun add_Image_into_list(list: MutableList<ImageData>){
 
-        list.add(binding.imageViewOne)
-        list.add(binding.imageViewTwo)
-        list.add(binding.imageViewThree)
-        list.add(binding.imageViewFour)
-        list.add(binding.imageViewFive)
-        list.add(binding.imageViewSix)
-        list.add(binding.imageViewSeven)
-        list.add(binding.imageViewEight)
-        list.add(binding.imageViewNine)
-        list.add(binding.imageViewTen)
-        list.add(binding.imageViewEleven)
-        list.add(binding.imageViewTwelve)
+        list.add(ImageData("imageViewOne"))
+        list.add(ImageData("imageViewTwo"))
+        list.add(ImageData("imageViewThree"))
+        list.add(ImageData("imageViewFour"))
+        list.add(ImageData("imageViewFive"))
+        list.add(ImageData("imageViewSix"))
+        list.add(ImageData("imageViewSeven"))
+        list.add(ImageData("imageViewEight"))
+        list.add(ImageData("imageViewNine"))
+        list.add(ImageData("imageViewTen"))
+        list.add(ImageData("imageViewEleven"))
+        list.add(ImageData("imageViewTwelve"))
 
     }
 
