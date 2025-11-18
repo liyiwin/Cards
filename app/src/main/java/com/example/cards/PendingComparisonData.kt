@@ -1,8 +1,8 @@
 package com.example.cards
 
-import com.example.cards.ui_model.ImageData
+import com.example.cards.ui_model.CardDetail
 
 data class PendingComparisonData (
- val ima: ImageData,
- val point:Int
+    val card: CardDetail,
+    val point:Int
 )

@@ -1,5 +1,5 @@
 package com.example.cards.ui_model
 
-data class ImageData(
+data class CardDetail(
     val imageName:String
 )

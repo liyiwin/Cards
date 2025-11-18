@@ -1,6 +1,6 @@
 package com.example.cards
 
-import com.example.cards.ui_model.ImageData
+import com.example.cards.ui_model.CardDetail
 import com.example.cards.ui_operation.AnimationEndListener
 import com.example.cards.ui_operation.UiOperationsManager
 import com.example.cards.utils.ITimerUtils
@@ -9,11 +9,11 @@ import com.example.cards.utils.ITimerUtils
 class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager,private val timerUtils: ITimerUtils){
 
     private val pendingComparisonDataList = mutableListOf<PendingComparisonData>()
-    private var selectedImages = mutableListOf<ImageData>()
+    private var selectedImages = mutableListOf<CardDetail>()
 
     private var list = mutableListOf<Int>()
 
-    private var unmatchedDataList = mutableListOf<ImageData>()
+    private var unmatchedDataList = mutableListOf<CardDetail>()
 
 
 
@@ -56,18 +56,18 @@ class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager,priv
 
     fun add_Image_into_list(){
 
-        unmatchedDataList.add(ImageData("imageViewOne"))
-        unmatchedDataList.add(ImageData("imageViewTwo"))
-        unmatchedDataList.add(ImageData("imageViewThree"))
-        unmatchedDataList.add(ImageData("imageViewFour"))
-        unmatchedDataList.add(ImageData("imageViewFive"))
-        unmatchedDataList.add(ImageData("imageViewSix"))
-        unmatchedDataList.add(ImageData("imageViewSeven"))
-        unmatchedDataList.add(ImageData("imageViewEight"))
-        unmatchedDataList.add(ImageData("imageViewNine"))
-        unmatchedDataList.add(ImageData("imageViewTen"))
-        unmatchedDataList.add(ImageData("imageViewEleven"))
-        unmatchedDataList.add(ImageData("imageViewTwelve"))
+        unmatchedDataList.add(CardDetail("imageViewOne"))
+        unmatchedDataList.add(CardDetail("imageViewTwo"))
+        unmatchedDataList.add(CardDetail("imageViewThree"))
+        unmatchedDataList.add(CardDetail("imageViewFour"))
+        unmatchedDataList.add(CardDetail("imageViewFive"))
+        unmatchedDataList.add(CardDetail("imageViewSix"))
+        unmatchedDataList.add(CardDetail("imageViewSeven"))
+        unmatchedDataList.add(CardDetail("imageViewEight"))
+        unmatchedDataList.add(CardDetail("imageViewNine"))
+        unmatchedDataList.add(CardDetail("imageViewTen"))
+        unmatchedDataList.add(CardDetail("imageViewEleven"))
+        unmatchedDataList.add(CardDetail("imageViewTwelve"))
 
     }
 
@@ -86,8 +86,8 @@ fun compare () {
 
     if (pendingComparisonDataList.size == 2 ){
 
-    val ima_one = pendingComparisonDataList[0].ima
-    val ima_two = pendingComparisonDataList[1].ima
+    val ima_one = pendingComparisonDataList[0].card
+    val ima_two = pendingComparisonDataList[1].card
     val point_one = pendingComparisonDataList[0].point
     val point_two = pendingComparisonDataList[1].point
 
@@ -124,7 +124,7 @@ fun compare () {
 
 
 
-fun shake(ima: ImageData, flag:String) {
+fun shake(ima: CardDetail, flag:String) {
 
 
 
@@ -152,7 +152,7 @@ fun shake(ima: ImageData, flag:String) {
 
 
 
-fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
+fun disappear (ima: CardDetail, pairedImage:CardDetail, flag:String){
 
     uiOperationsManager.performDisappearAnimation(ima.imageName,object:AnimationEndListener{
 
@@ -188,7 +188,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
 
 
-  fun rotateCardUpright( point:Int, ima: ImageData){
+  fun rotateCardUpright( point:Int, ima: CardDetail){
 
       uiOperationsManager.performBackAnimation(ima.imageName,object: AnimationEndListener{
           override fun onAnimationEnd() {
@@ -202,7 +202,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
   }
 
-  fun rotateCardUpsideDown(ima: ImageData){
+  fun rotateCardUpsideDown(ima: CardDetail){
 
       uiOperationsManager.performBackAnimation(ima.imageName,object: AnimationEndListener{
           override fun onAnimationEnd() {
@@ -250,14 +250,14 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
             uiOperationsManager.setImageIsEnabled(imageName,false)
 
-            selectedImages.add(ImageData(imageName))
+            selectedImages.add(CardDetail(imageName))
 
             if (selectedImages.size == 2){
                 uiOperationsManager.lockUnMatchedCard()
 
             }
 
-            rotateCardUpright(number,ImageData(imageName))
+            rotateCardUpright(number,CardDetail(imageName))
 
         }
     }
