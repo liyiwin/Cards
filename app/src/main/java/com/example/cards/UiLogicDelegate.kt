@@ -217,7 +217,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewOne"->{
 
-                          carTagManager.set_ima_one_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -229,7 +229,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewTwo" ->{
 
-                          carTagManager.set_ima_two_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -241,7 +241,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewThree"->{
 
-                          carTagManager.set_ima_three_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -253,7 +253,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewFour"->{
 
-                          carTagManager.set_ima_four_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -265,7 +265,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewFive"->{
 
-                          carTagManager.set_ima_five_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -276,7 +276,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewSix"->{
 
-                          carTagManager.set_ima_six_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -288,7 +288,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewSeven"->{
 
-                          carTagManager.set_ima_seven_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -300,7 +300,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewEight"->{
 
-                          carTagManager.set_ima_eight_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -312,7 +312,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewNine"->{
 
-                          carTagManager.set_ima_nine_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -325,7 +325,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
                       "imageViewTen"->{
 
 
-                          carTagManager.set_ima_ten_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -338,7 +338,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewEleven"->{
 
-                          carTagManager.set_ima_eleven_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -350,7 +350,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewTwelve"->{
 
-                          carTagManager.set_ima_twelve_tag("front")
+                          uiOperationsManager.changeCardTagToFront(ima.imageName)
 
                           uiOperationsManager.performFrontAnimation(ima.imageName)
 
@@ -382,75 +382,72 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
                       "imageViewOne" ->{
 
-                          carTagManager.set_ima_one_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
                       }
 
                       "imageViewTwo" ->{
 
-                          carTagManager.set_ima_two_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
                       }
 
                       "imageViewThree"->{
 
-                          carTagManager.set_ima_three_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
                       }
 
                       "imageViewFour"->{
 
-                          carTagManager.set_ima_four_tag("back")
-
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
                       }
 
                       "imageViewFive"->{
 
-                          carTagManager.set_ima_five_tag("back")
-
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
                       }
 
                       "imageViewSix"->{
-
-                          carTagManager.set_ima_six_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
                       }
 
                       "imageViewSeven"->{
 
-                          carTagManager.set_ima_seven_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
                       }
 
                       "imageViewEight"->{
 
-                          carTagManager.set_ima_eight_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
                       }
 
                       "imageViewNine"->{
 
-                          carTagManager.set_ima_nine_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
                       }
 
                       "imageViewTen"->{
 
 
-                          carTagManager.set_ima_ten_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
 
                       }
 
                       "imageViewEleven"->{
 
-                          carTagManager.set_ima_eleven_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
                       }
 
                       "imageViewTwelve"->{
 
-                          carTagManager.set_ima_twelve_tag("back")
+                          uiOperationsManager.changeCardTagToBack(ima.imageName)
 
 
                       }
