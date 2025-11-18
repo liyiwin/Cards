@@ -3,8 +3,9 @@ package com.example.cards
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class ViewModel(app: Application): AndroidViewModel(app) {
+class MainViewModel: ViewModel() {
 
     val ima_one_tag = MutableLiveData<String>()
 
@@ -31,6 +32,8 @@ class ViewModel(app: Application): AndroidViewModel(app) {
     val ima_twelve_tag = MutableLiveData<String>()
 
     val unMatchedData_IsLocked = MutableLiveData<Boolean>()
+
+
 
     fun setImageTag(imageName:String,tag: String){
         when(imageName){

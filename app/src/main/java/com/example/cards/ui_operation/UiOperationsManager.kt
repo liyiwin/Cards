@@ -5,14 +5,12 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.cards.R
-import com.example.cards.ViewModel
+import com.example.cards.MainViewModel
 import com.example.cards.databinding.ActivityMainBinding
-import com.example.cards.ui_model.ImageData
 
-class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val viewModel: ViewModel) {
+class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val mainViewModel: MainViewModel) {
 
     fun runOnUiThread(callback:()->Unit){
         activity.runOnUiThread {
@@ -21,18 +19,18 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
     }
 
     fun lockUnMatchedCard(){
-        viewModel.lockUnMatchedData()
+        mainViewModel.lockUnMatchedData()
     }
 
     fun unLockUnMatchedCard(){
-        viewModel.unlLockUnMatchedData()
+        mainViewModel.unlLockUnMatchedData()
     }
 
     fun changeCardTagToBack(imageName:String){
-         viewModel.setImageTag(imageName,"back")
+         mainViewModel.setImageTag(imageName,"back")
     }
     fun changeCardTagToFront(imageName:String){
-        viewModel.setImageTag(imageName,"front")
+        mainViewModel.setImageTag(imageName,"front")
     }
 
     fun setCarClickListener(imageName:String,listener:() -> Unit){
@@ -177,14 +175,14 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
             listener.invoke(isLocked)
 
         }
-        viewModel.getUnMatchedDataIsLocked().observe(activity,unMatchedDataIsLocked)
+        mainViewModel.getUnMatchedDataIsLocked().observe(activity,unMatchedDataIsLocked)
     }
 
     fun setCarTagObserver(imageName:String,listener: (String) -> Unit){
         val observer = Observer<String>{
             listener.invoke(it)
         }
-        val imageTag = viewModel.getImageTag(imageName)
+        val imageTag = mainViewModel.getImageTag(imageName)
         imageTag.observe(activity,observer)
     }
 }
