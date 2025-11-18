@@ -31,31 +31,31 @@ class UiLogicDelegate (private val carTagManager: ICardTagManager,private val un
         }
         viewModel.getUnMatchedDataIsLocked().observe(this,unMatchedDataIsLocked)
 
-        setCarTagObserve("imageViewOne",list[0])
-        setCarTagObserve("imageViewTwo",list[1])
-        setCarTagObserve("imageViewThree",list[2])
-        setCarTagObserve("imageViewFour",list[3])
-        setCarTagObserve("imageViewFive",list[4])
-        setCarTagObserve("imageViewSix",list[5])
-        setCarTagObserve("imageViewSeven",list[6])
-        setCarTagObserve("imageViewEight",list[7])
-        setCarTagObserve("imageViewNine",list[8])
-        setCarTagObserve("imageViewTen",list[9])
-        setCarTagObserve("imageViewEleven",list[10])
-        setCarTagObserve("imageViewTwelve",list[11])
+        setCardTagObserve("imageViewOne",list[0])
+        setCardTagObserve("imageViewTwo",list[1])
+        setCardTagObserve("imageViewThree",list[2])
+        setCardTagObserve("imageViewFour",list[3])
+        setCardTagObserve("imageViewFive",list[4])
+        setCardTagObserve("imageViewSix",list[5])
+        setCardTagObserve("imageViewSeven",list[6])
+        setCardTagObserve("imageViewEight",list[7])
+        setCardTagObserve("imageViewNine",list[8])
+        setCardTagObserve("imageViewTen",list[9])
+        setCardTagObserve("imageViewEleven",list[10])
+        setCardTagObserve("imageViewTwelve",list[11])
 
-        setCareClickAction("imageViewOne",list[0])
-        setCareClickAction("imageViewTwo",list[1])
-        setCareClickAction("imageViewThree",list[2])
-        setCareClickAction("imageViewFour",list[3])
-        setCareClickAction("imageViewFive",list[4])
-        setCareClickAction("imageViewSix",list[5])
-        setCareClickAction("imageViewSeven",list[6])
-        setCareClickAction("imageViewEight",list[7])
-        setCareClickAction("imageViewNine",list[8])
-        setCareClickAction("imageViewTen",list[9])
-        setCareClickAction("imageViewEleven",list[10])
-        setCareClickAction("imageViewTwelve",list[11])
+        setCardClickAction("imageViewOne",list[0])
+        setCardClickAction("imageViewTwo",list[1])
+        setCardClickAction("imageViewThree",list[2])
+        setCardClickAction("imageViewFour",list[3])
+        setCardClickAction("imageViewFive",list[4])
+        setCardClickAction("imageViewSix",list[5])
+        setCardClickAction("imageViewSeven",list[6])
+        setCardClickAction("imageViewEight",list[7])
+        setCardClickAction("imageViewNine",list[8])
+        setCardClickAction("imageViewTen",list[9])
+        setCardClickAction("imageViewEleven",list[10])
+        setCardClickAction("imageViewTwelve",list[11])
 
     }
 
@@ -476,7 +476,8 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
       })
 
   }
-    private fun setCarTagObserve(imageName:String,number:Int){
+
+    private fun setCardTagObserve(imageName:String,number:Int){
 
         uiOperationsManager.setCarTagObserver(imageName){
 
@@ -494,7 +495,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
         }
     }
-    private fun setCareClickAction(imageName:String,number:Int){
+    private fun setCardClickAction(imageName:String,number:Int){
         uiOperationsManager.setCarClickListener(imageName) {
 
             uiOperationsManager.setImageIsEnabled(imageName,false)
