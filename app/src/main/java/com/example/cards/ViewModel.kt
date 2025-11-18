@@ -111,6 +111,23 @@ class ViewModel(app: Application): AndroidViewModel(app) , ICardTagManager,IUnMa
 
     }
 
+    fun setImageTag(imageName:String,tag: String){
+        when(imageName){
+            "imageViewOne" -> ima_one_tag.value = tag
+            "imageViewTwo" -> ima_two_tag.value = tag
+            "imageViewThree" -> ima_three_tag.value = tag
+            "imageViewFour"->  ima_four_tag.value = tag
+            "imageViewFive"-> ima_five_tag.value = tag
+            "imageViewSix"-> ima_six_tag.value = tag
+            "imageViewSeven"-> ima_seven_tag.value = tag
+            "imageViewEight"-> ima_eight_tag.value = tag
+            "imageViewNine"-> ima_nine_tag.value = tag
+            "imageViewTen"-> ima_ten_tag.value = tag
+            "imageViewEleven"-> ima_eleven_tag.value = tag
+            else ->  ima_twelve_tag.value = tag
+        }
+    }
+
     fun getImageTag(imageName:String): MutableLiveData<String> {
         return when(imageName){
             "imageViewOne" -> ima_one_tag
