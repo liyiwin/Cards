@@ -22,6 +22,13 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         viewModel.unlLockUnMatchedData()
     }
 
+    fun changeCardTagToBack(imageName:String){
+         viewModel.setImageTag(imageName,"back")
+    }
+    fun changeCardTagToFront(imageName:String){
+        viewModel.setImageTag(imageName,"front")
+    }
+
     fun setCarClickListener(imageName:String,listener:() -> Unit){
         val imageView = getImageView(imageName)
         imageView.setOnClickListener { listener.invoke() }
@@ -115,6 +122,7 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
             else->return R.drawable.thirteen
         }
     }
+
 
 
     fun getImageView(imageName: String):ImageView{
