@@ -14,6 +14,12 @@ import com.example.cards.ui_model.ImageData
 
 class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val viewModel: ViewModel) {
 
+    fun runOnUiThread(callback:()->Unit){
+        activity.runOnUiThread {
+            callback.invoke()
+        }
+    }
+
     fun lockUnMatchedCard(){
         viewModel.lockUnMatchedData()
     }
