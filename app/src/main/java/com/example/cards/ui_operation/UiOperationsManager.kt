@@ -11,6 +11,48 @@ import com.example.cards.ui_model.ImageData
 
 class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding) {
 
+
+    fun setCarClickListener(imageName:String,listener:() -> Unit){
+        when(imageName){
+            "imageViewOne" ->{
+                binding.imageViewOne.setOnClickListener { listener.invoke() }
+            }
+            "imageViewTwo" ->{
+                binding.imageViewTwo.setOnClickListener {  listener.invoke() }
+            }
+            "imageViewThree" ->{
+                binding.imageViewThree.setOnClickListener {  listener.invoke()  }
+            }
+            "imageViewFour"->{
+                binding.imageViewFour.setOnClickListener {  listener.invoke()  }
+            }
+            "imageViewFive"->{
+                binding.imageViewFive.setOnClickListener { listener.invoke() }
+            }
+            "imageViewSix"->{
+                binding.imageViewSix.setOnClickListener {  listener.invoke()  }
+            }
+            "imageViewSeven"->{
+                binding.imageViewSeven.setOnClickListener {  listener.invoke()  }
+            }
+            "imageViewEight"->{
+                binding.imageViewEight.setOnClickListener { listener.invoke() }
+            }
+            "imageViewNine"->{
+                binding.imageViewNine.setOnClickListener {  listener.invoke()  }
+            }
+            "imageViewTen"->{
+                binding.imageViewTen.setOnClickListener {  listener.invoke() }
+            }
+            "imageViewEleven"->{
+                binding.imageViewEleven.setOnClickListener { listener.invoke() }
+            }
+            "imageViewTwelve"->{
+                binding.imageViewTwelve.setOnClickListener {  listener.invoke()  }
+            }
+        }
+    }
+
     fun set_mycard_Image(ima:ImageView,number:Int){
 
         when(number){

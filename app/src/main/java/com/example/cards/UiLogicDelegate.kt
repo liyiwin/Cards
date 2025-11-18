@@ -301,184 +301,21 @@ class UiLogicDelegate (private val carTagManager: ICardTagManager,private val un
         viewModel.get_ima_twelve_tag().observe(this,tag_twelve_Observer)
 
 
-        binding. imageViewOne.setOnClickListener {
-
-            binding.imageViewOne.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewOne"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[0],ImageData("imageViewOne"))
-
-        }
-
-
-        binding.imageViewTwo.setOnClickListener {
-
-            binding.imageViewTwo.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewTwo"))
-
-            if (selectedImages.size == 2){
-
-                viewModel.lockUnMatchedData()
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[1],ImageData("imageViewTwo"))
-
-
-        }
-
-        binding.imageViewThree.setOnClickListener {
-
-            binding.imageViewThree.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewThree"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[2],ImageData("imageViewThree"))
-
-
-        }
-
-        binding.imageViewFour.setOnClickListener {
-
-            binding.imageViewFour.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewFour"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[3],ImageData("imageViewFour"))
-
-        }
-
-        binding.imageViewFive.setOnClickListener {
-
-            binding.imageViewFive.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewFive"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[4],ImageData("imageViewFive"))
-
-
-
-        }
-
-        binding.imageViewSix.setOnClickListener {
-
-            binding.imageViewSix.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewSix"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[5],ImageData("imageViewSix"))
-
-        }
-
-        binding.imageViewSeven.setOnClickListener {
-
-            binding.imageViewSeven.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewSeven"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[6],ImageData("imageViewSeven"))
-
-        }
-
-        binding.imageViewEight.setOnClickListener {
-
-            binding.imageViewEight.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewEight"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[7],ImageData("imageViewEight"))
-
-        }
-
-        binding.imageViewNine.setOnClickListener {
-
-            binding.imageViewNine.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewNine"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[8],ImageData("imageViewNine"))
-
-        }
-
-        binding.imageViewTen.setOnClickListener {
-
-            binding.imageViewTen.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewTen"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[9],ImageData("imageViewTen"))
-
-        }
-        binding.imageViewEleven.setOnClickListener {
-
-            binding.imageViewEleven.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewEleven"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[10],ImageData("imageViewEleven"))
-
-
-        }
-        binding.imageViewTwelve.setOnClickListener {
-
-            binding.imageViewTwelve.isEnabled = false
-
-            selectedImages.add(ImageData("imageViewTwelve"))
-
-            if (selectedImages.size == 2){
-                viewModel.lockUnMatchedData()
-
-            }
-
-            uiLogicDelegate.rotateCardUpright(unmatchedDataList,selectedImages,list[11],ImageData("imageViewTwelve"))
-
-        }
+        setCareClickAction("imageViewOne",list[0])
+        setCareClickAction("imageViewTwo",list[1])
+        setCareClickAction("imageViewThree",list[2])
+        setCareClickAction("imageViewFour",list[3])
+        setCareClickAction("imageViewFive",list[4])
+        setCareClickAction("imageViewSix",list[5])
+        setCareClickAction("imageViewSeven",list[6])
+        setCareClickAction("imageViewEight",list[7])
+        setCareClickAction("imageViewNine",list[8])
+        setCareClickAction("imageViewTen",list[9])
+        setCareClickAction("imageViewEleven",list[10])
+        setCareClickAction("imageViewTwelve",list[11])
 
     }
+
 
 
     fun add_Image_into_list(list: MutableList<ImageData>){
@@ -896,6 +733,24 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
       })
 
   }
+
+    private fun setCareClickAction(imageName:String,number:Int){
+        uiOperationsManager.setCarClickListener(imageName) {
+
+            uiOperationsManager.setImageIsEnabled(imageName,false)
+
+            selectedImages.add(ImageData(imageName))
+
+            if (selectedImages.size == 2){
+                unMatchedDataManger.lockUnMatchedData()
+
+            }
+
+            rotateCardUpright(unmatchedDataList,selectedImages,number,ImageData(imageName))
+
+        }
+    }
+
 
 }
 
