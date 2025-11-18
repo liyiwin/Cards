@@ -122,15 +122,7 @@ fun shake(ima: CardDetail, flag:String) {
 
         override fun onAnimationEnd() {
 
-            rotateCardUpsideDown(ima)
-
-            // flag two 代表動畫完成
-
-            if (flag == "two"){
-
-                set_enable()
-
-            }
+            rotateCardUpsideDown(ima,flag)
 
         }
 
@@ -193,19 +185,18 @@ fun disappear (ima: CardDetail, pairedImage:CardDetail, flag:String){
 
   }
 
-  fun rotateCardUpsideDown(ima: CardDetail){
+  fun rotateCardUpsideDown(ima: CardDetail, flag:String){
 
       uiOperationsManager.performBackAnimation(ima.imageName,object: AnimationEndListener{
           override fun onAnimationEnd() {
               uiOperationsManager.changeCardTagToBack(ima.imageName)
               uiOperationsManager.performFrontAnimation(ima.imageName)
-
-
-
+              // flag two 代表動畫完成
+              if (flag == "two"){
+                  set_enable()
+              }
 
           }
-
-
       })
 
   }
