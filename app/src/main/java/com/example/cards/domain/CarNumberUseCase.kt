@@ -1,6 +1,6 @@
 package com.example.cards.domain
 
-class CarNumberUseCase {
+class CarNumberUseCase :ICarNumberUseCase{
 
     var a = 6
 
@@ -34,7 +34,7 @@ class CarNumberUseCase {
 
 
 
-    fun random_list_position (){
+    private  fun random_list_position (){
 
         val number = number_list.size
 
@@ -47,7 +47,7 @@ class CarNumberUseCase {
 
     }
 
-    fun random_position(){
+   private fun random_position(){
 
         val number = position_list.size
 
@@ -73,7 +73,7 @@ class CarNumberUseCase {
 
     }
 
-    fun transform (list: MutableList<Int>){
+    override fun transform (list: MutableList<Int>){
 
         while(a > 0){
 
