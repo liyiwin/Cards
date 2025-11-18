@@ -59,6 +59,10 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         val imageView = getImageView(imageName)
         imageView.setImageResource(drawable)
     }
+    fun setCardBackImage(imageName:String){
+        val imageView = getImageView(imageName)
+        imageView.setImageResource(R.drawable.background)
+    }
 
     fun toastMessage(message:String){
         Toast.makeText(activity,message, Toast.LENGTH_LONG).show()
