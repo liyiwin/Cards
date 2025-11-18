@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         uiOperationsManager = UiOperationsManager(this,binding,viewModel)
-        uiLogicDelegate = UiLogicDelegate(viewModel,viewModel,uiOperationsManager)
+        uiLogicDelegate = UiLogicDelegate(viewModel,uiOperationsManager)
         uiLogicDelegate.performCreate()
     }
 

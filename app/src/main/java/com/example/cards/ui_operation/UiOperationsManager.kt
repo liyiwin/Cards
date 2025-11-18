@@ -13,6 +13,13 @@ import com.example.cards.ui_model.ImageData
 
 class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val viewModel: ViewModel) {
 
+    fun lockUnMatchedCard(){
+        viewModel.lockUnMatchedData()
+    }
+
+    fun unLockUnMatchedCard(){
+        viewModel.unlLockUnMatchedData()
+    }
 
     fun setCarClickListener(imageName:String,listener:() -> Unit){
         val imageView = getImageView(imageName)

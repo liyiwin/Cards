@@ -6,7 +6,7 @@ import com.example.cards.ui_operation.AnimationEndListener
 import com.example.cards.ui_operation.UiOperationsManager
 
 
-class UiLogicDelegate (private val carTagManager: ICardTagManager,private val unMatchedDataManger: IUnMatchedDataManger,private val uiOperationsManager: UiOperationsManager){
+class UiLogicDelegate (private val carTagManager: ICardTagManager,private val uiOperationsManager: UiOperationsManager){
 
     private val pendingComparisonDataList = mutableListOf<PendingComparisonData>()
     private var selectedImages = mutableListOf<ImageData>()
@@ -76,7 +76,7 @@ class UiLogicDelegate (private val carTagManager: ICardTagManager,private val un
 fun set_enable( ){
 
         selectedImages.clear()
-        unMatchedDataManger.unlLockUnMatchedData()
+        uiOperationsManager.unLockUnMatchedCard()
 
 }
 
@@ -504,7 +504,7 @@ fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
             selectedImages.add(ImageData(imageName))
 
             if (selectedImages.size == 2){
-                unMatchedDataManger.lockUnMatchedData()
+                uiOperationsManager.lockUnMatchedCard()
 
             }
 
