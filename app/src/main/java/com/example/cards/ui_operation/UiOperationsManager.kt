@@ -20,11 +20,6 @@ import kotlinx.coroutines.launch
 
 class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val mainViewModel: MainViewModel,private val lifecycleOwner: LifecycleOwner) {
 
-    fun runOnUiThread(callback:()->Unit){
-        activity.runOnUiThread {
-            callback.invoke()
-        }
-    }
 
     fun emitSelection(index:Int){
         mainViewModel.sendViewModelEvent(ViewModelEvent.CardSelectionViewModelEvent(index))

@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.cards.databinding.ActivityMainBinding
 import com.example.cards.ui_operation.UiOperationsManager
-import com.example.cards.utils.TimerUtils
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         uiOperationsManager = UiOperationsManager(this,binding,mainViewModel,this)
-        uiLogicDelegate = UiLogicDelegate(uiOperationsManager,TimerUtils())
+        uiLogicDelegate = UiLogicDelegate(uiOperationsManager)
         uiLogicDelegate.performCreate()
     }
 

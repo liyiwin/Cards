@@ -4,10 +4,9 @@ package com.example.cards
 import com.example.cards.ui_model.UiEvent
 import com.example.cards.ui_operation.AnimationEndListener
 import com.example.cards.ui_operation.UiOperationsManager
-import com.example.cards.utils.ITimerUtils
 
 
-class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager,private val timerUtils: ITimerUtils){
+class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager){
 
 
     fun performCreate(){
