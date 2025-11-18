@@ -148,7 +148,13 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         }
     }
 
+    fun setUnMatchedDataIsLockedObserver(listener: (Boolean) -> Unit){
+        val unMatchedDataIsLocked = Observer<Boolean>{ isLocked ->
+            listener.invoke(isLocked)
 
+        }
+        viewModel.getUnMatchedDataIsLocked().observe(activity,unMatchedDataIsLocked)
+    }
 
     fun setCarTagObserver(imageName:String,listener: (String) -> Unit){
         val observer = Observer<String>{

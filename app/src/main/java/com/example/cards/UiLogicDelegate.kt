@@ -22,14 +22,7 @@ class UiLogicDelegate (private val carTagManager: ICardTagManager,private val un
 
         transform(list)
 
-        val unMatchedDataIsLocked = Observer<Boolean>{ isLocked ->
-            val isEnabled = !isLocked
-            unmatchedDataList.forEach {
-                uiOperationsManager.setImageIsEnabled(it.imageName,isEnabled)
-            }
-
-        }
-        viewModel.getUnMatchedDataIsLocked().observe(this,unMatchedDataIsLocked)
+        setUnMatchedCardIsLockedObserve()
 
         setCardTagObserve("imageViewOne",list[0])
         setCardTagObserve("imageViewTwo",list[1])
@@ -476,7 +469,15 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
       })
 
   }
+    private fun setUnMatchedCardIsLockedObserve(){
+        uiOperationsManager.setUnMatchedDataIsLockedObserver{ isLocked ->
+            val isEnabled = !isLocked
+            unmatchedDataList.forEach {
+                uiOperationsManager.setImageIsEnabled(it.imageName,isEnabled)
+            }
 
+        }
+    }
     private fun setCardTagObserve(imageName:String,number:Int){
 
         uiOperationsManager.setCarTagObserver(imageName){
