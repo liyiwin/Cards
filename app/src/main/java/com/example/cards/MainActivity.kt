@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        uiOperationsManager = UiOperationsManager(this,binding)
+        uiOperationsManager = UiOperationsManager(this,binding,viewModel)
         uiLogicDelegate = UiLogicDelegate(viewModel,viewModel,uiOperationsManager)
         uiLogicDelegate.performCreate()
     }

@@ -6,10 +6,11 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cards.R
+import com.example.cards.ViewModel
 import com.example.cards.databinding.ActivityMainBinding
 import com.example.cards.ui_model.ImageData
 
-class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding) {
+class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val viewModel: ViewModel) {
 
 
     fun setCarClickListener(imageName:String,listener:() -> Unit){
