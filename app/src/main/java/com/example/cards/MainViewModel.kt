@@ -1,91 +1,144 @@
 package com.example.cards
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.cards.ui_model.CardDetail
 import com.example.cards.ui_model.UiEvent
 import com.example.cards.ui_model.ViewModelEvent
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
-
-    val ima_one_tag = MutableLiveData<String>()
-
-    val ima_two_tag = MutableLiveData<String>()
-
-    val ima_three_tag = MutableLiveData<String>()
-
-    val ima_four_tag = MutableLiveData<String>()
-
-    val ima_five_tag = MutableLiveData<String>()
-
-    val ima_six_tag = MutableLiveData<String>()
-
-    val ima_seven_tag = MutableLiveData<String>()
-
-    val ima_eight_tag = MutableLiveData<String>()
-
-    val ima_nine_tag = MutableLiveData<String>()
-
-    val ima_ten_tag = MutableLiveData<String>()
-
-    val ima_eleven_tag = MutableLiveData<String>()
-
-    val ima_twelve_tag = MutableLiveData<String>()
-
-    val unMatchedData_IsLocked = MutableLiveData<Boolean>()
+    private val pendingComparisonDataList = mutableListOf<CardDetail>()
+    private var unmatchedDataList = mutableListOf<CardDetail>()
+    private var selectedImages = mutableListOf<CardDetail>()
 
     private val _uiEvent = MutableSharedFlow<UiEvent>()
     val uiEvent get() = _uiEvent
 
     private val _viewModelEvent = MutableSharedFlow<ViewModelEvent>()
 
-    fun setImageTag(imageName:String,tag: String){
-        when(imageName){
-            "imageViewOne" -> ima_one_tag.value = tag
-            "imageViewTwo" -> ima_two_tag.value = tag
-            "imageViewThree" -> ima_three_tag.value = tag
-            "imageViewFour"->  ima_four_tag.value = tag
-            "imageViewFive"-> ima_five_tag.value = tag
-            "imageViewSix"-> ima_six_tag.value = tag
-            "imageViewSeven"-> ima_seven_tag.value = tag
-            "imageViewEight"-> ima_eight_tag.value = tag
-            "imageViewNine"-> ima_nine_tag.value = tag
-            "imageViewTen"-> ima_ten_tag.value = tag
-            "imageViewEleven"-> ima_eleven_tag.value = tag
-            else ->  ima_twelve_tag.value = tag
+    init {
+        val cardList = createCardList();
+        unmatchedDataList.addAll(cardList)
+        viewModelScope.launch {
+            _viewModelEvent.collect { event ->
+                launch {
+                    when(event){
+                        is ViewModelEvent.CardSelectionViewModelEvent -> selectCard(cardList[event.index])
+                    }
+                }
+            }
+        }
+
+    }
+
+
+    fun sendViewModelEvent(viewModelEvent: ViewModelEvent){
+        viewModelScope.launch{
+            _viewModelEvent.emit(viewModelEvent)
         }
     }
 
-    fun getImageTag(imageName:String): MutableLiveData<String> {
-        return when(imageName){
-            "imageViewOne" -> ima_one_tag
-            "imageViewTwo" -> ima_two_tag
-            "imageViewThree" -> ima_three_tag
-            "imageViewFour"->  ima_four_tag
-            "imageViewFive"-> ima_five_tag
-            "imageViewSix"-> ima_six_tag
-            "imageViewSeven"-> ima_seven_tag
-            "imageViewEight"-> ima_eight_tag
-            "imageViewNine"-> ima_nine_tag
-            "imageViewTen"-> ima_ten_tag
-            "imageViewEleven"-> ima_eleven_tag
-            else ->  ima_twelve_tag
+
+    private suspend fun selectCard(card:CardDetail){
+        _uiEvent.emit(UiEvent.LockCardUiEvent(card.imageName))
+        selectedImages.add(card)
+        if (selectedImages.size == 2)  _uiEvent.emit(UiEvent.LockAllUnMatchedCardUiEvent(unmatchedDataList.toList()))
+        _uiEvent.emit(UiEvent.PerformBackAnimation (card.imageName){
+            viewModelScope.launch {
+                _uiEvent.emit(UiEvent.RenderCardFront(card.imageName,card.point))
+                _uiEvent.emit(UiEvent.PerformFrontAnimation(card.imageName))
+                addPendingCard(card)
+            }
+        })
+    }
+
+    private  suspend fun addPendingCard(card:CardDetail){
+        pendingComparisonDataList.add(card)
+        if (pendingComparisonDataList.size == 2 ) {
+            compare (pendingComparisonDataList[0],pendingComparisonDataList[1])
+            pendingComparisonDataList.clear()
         }
     }
 
-    fun lockUnMatchedData() {
-        unMatchedData_IsLocked.value = true
+    private  suspend fun compare (cardOne:CardDetail,cardTwo:CardDetail) {
+
+        if(cardOne.point == cardTwo.point) {
+            delay(2000L)
+            disappear(  cardOne,cardTwo, "one")
+            disappear(  cardTwo,cardOne, "two")
+        }else {
+            shake(cardOne, "one")
+            shake(cardTwo, "two")
+        }
     }
 
-    fun unlLockUnMatchedData() {
-        unMatchedData_IsLocked.value = false
+
+    private  suspend fun shake(ima: CardDetail, flag:String) {
+        _uiEvent.emit(UiEvent.PerformShackAnimation(ima.imageName){
+            viewModelScope.launch {
+                rotateCardUpsideDown(ima,flag)
+            }
+        })
+
     }
 
-    fun getUnMatchedDataIsLocked():MutableLiveData<Boolean>{
-        return unMatchedData_IsLocked
+
+    private suspend fun disappear (ima: CardDetail, pairedImage:CardDetail, flag:String){
+        _uiEvent.emit(UiEvent.PerformDisappearAnimation(ima.imageName){
+            viewModelScope.launch {
+                // flag two 代表動畫完成
+                _uiEvent.emit(UiEvent.LockCardUiEvent(ima.imageName))
+                if (flag == "two"){
+                    unmatchedDataList.remove(ima)
+                    unmatchedDataList.remove(pairedImage)
+                    set_enable()
+                    if (unmatchedDataList.size  == 0 ){
+                        _uiEvent.emit(UiEvent.Toast("遊戲完成"))
+                    }
+                }
+            }
+        })
     }
 
+    private  suspend fun rotateCardUpsideDown(card: CardDetail, flag:String){
+        _uiEvent.emit(UiEvent.PerformBackAnimation(card.imageName){
+            viewModelScope.launch {
+                _uiEvent.emit(UiEvent.RenderCardBack(card.imageName))
+                _uiEvent.emit(UiEvent.PerformFrontAnimation(card.imageName))
+                // flag two 代表動畫完成
+                if (flag == "two"){
+                    set_enable()
+                }
+            }
+        })
+
+    }
+
+    private suspend fun set_enable( ){
+        selectedImages.clear()
+        _uiEvent.emit(UiEvent.UnLockAllUnMatchedCardUiEvent(unmatchedDataList.toList()))
+   }
+
+    private fun createCardList():MutableList<CardDetail>{
+        val cards  = mutableListOf<CardDetail>()
+        val numberLis = mutableListOf<Int>()
+        transform(numberLis)
+        cards.add(CardDetail("imageViewOne",numberLis[0]))
+        cards.add(CardDetail("imageViewTwo",numberLis[1]))
+        cards.add(CardDetail("imageViewThree",numberLis[2]))
+        cards.add(CardDetail("imageViewFour",numberLis[3]))
+        cards.add(CardDetail("imageViewFive",numberLis[4]))
+        cards.add(CardDetail("imageViewSix",numberLis[5]))
+        cards.add(CardDetail("imageViewSeven",numberLis[6]))
+        cards.add(CardDetail("imageViewEight",numberLis[7]))
+        cards.add(CardDetail("imageViewNine",numberLis[8]))
+        cards.add(CardDetail("imageViewTen",numberLis[9]))
+        cards.add(CardDetail("imageViewEleven",numberLis[10]))
+        cards.add(CardDetail("imageViewTwelve",numberLis[11]))
+        return cards;
+    }
 
 }

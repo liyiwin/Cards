@@ -5,12 +5,20 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.cards.R
 import com.example.cards.MainViewModel
 import com.example.cards.databinding.ActivityMainBinding
+import com.example.cards.ui_model.CardDetail
+import com.example.cards.ui_model.UiEvent
+import com.example.cards.ui_model.ViewModelEvent
+import kotlinx.coroutines.launch
 
-class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val mainViewModel: MainViewModel) {
+class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val mainViewModel: MainViewModel,private val lifecycleOwner: LifecycleOwner) {
 
     fun runOnUiThread(callback:()->Unit){
         activity.runOnUiThread {
@@ -18,23 +26,14 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         }
     }
 
-    fun lockUnMatchedCard(){
-        mainViewModel.lockUnMatchedData()
+    fun emitSelection(index:Int){
+        mainViewModel.sendViewModelEvent(ViewModelEvent.CardSelectionViewModelEvent(index))
     }
 
-    fun unLockUnMatchedCard(){
-        mainViewModel.unlLockUnMatchedData()
-    }
 
-    fun changeCardTagToBack(imageName:String){
-         mainViewModel.setImageTag(imageName,"back")
-    }
-    fun changeCardTagToFront(imageName:String){
-        mainViewModel.setImageTag(imageName,"front")
-    }
 
-    fun setCarClickListener(imageName:String,listener:() -> Unit){
-        val imageView = getImageView(imageName)
+    fun setCarClickListener(index:Int,listener:() -> Unit){
+        val imageView = getImageView(index)
         imageView.setOnClickListener { listener.invoke() }
     }
 
@@ -127,7 +126,46 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         }
     }
 
-
+    fun getImageView(index: Int):ImageView{
+        when(index){
+            0 ->{
+                return binding.imageViewOne
+            }
+            1 ->{
+                return binding.imageViewTwo
+            }
+            2 ->{
+                return binding.imageViewThree
+            }
+            3->{
+                return binding.imageViewFour
+            }
+            4->{
+                return binding.imageViewFive
+            }
+            5->{
+                return binding.imageViewSix
+            }
+            6->{
+                return binding.imageViewSeven
+            }
+            7->{
+                return binding.imageViewEight
+            }
+            8->{
+                return binding.imageViewNine
+            }
+            9->{
+                return binding.imageViewTen
+            }
+            10->{
+                return binding.imageViewEleven
+            }
+            else->{
+                return binding.imageViewTwelve
+            }
+        }
+    }
 
     fun getImageView(imageName: String):ImageView{
         when(imageName){
@@ -170,19 +208,13 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         }
     }
 
-    fun setUnMatchedDataIsLockedObserver(listener: (Boolean) -> Unit){
-        val unMatchedDataIsLocked = Observer<Boolean>{ isLocked ->
-            listener.invoke(isLocked)
-
-        }
-        mainViewModel.getUnMatchedDataIsLocked().observe(activity,unMatchedDataIsLocked)
-    }
-
-    fun setCarTagObserver(imageName:String,listener: (String) -> Unit){
-        val observer = Observer<String>{
-            listener.invoke(it)
-        }
-        val imageTag = mainViewModel.getImageTag(imageName)
-        imageTag.observe(activity,observer)
+    fun setUiEventObserver(uiEventObserver:(UiEvent)->Unit){
+       lifecycleOwner.lifecycleScope.launch {
+           lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+               mainViewModel.uiEvent.collect{ event ->
+                   uiEventObserver.invoke(event)
+               }
+           }
+       }
     }
 }

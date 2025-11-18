@@ -1,223 +1,70 @@
 package com.example.cards
 
-import com.example.cards.ui_model.CardDetail
+
+import com.example.cards.ui_model.UiEvent
 import com.example.cards.ui_operation.AnimationEndListener
 import com.example.cards.ui_operation.UiOperationsManager
 import com.example.cards.utils.ITimerUtils
 
 
 class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager,private val timerUtils: ITimerUtils){
-    private val pendingComparisonDataList = mutableListOf<CardDetail>()
-
-    private var selectedImages = mutableListOf<CardDetail>()
-
-    private var unmatchedDataList = mutableListOf<CardDetail>()
-
 
 
     fun performCreate(){
-        val cardList = createCardList();
-        unmatchedDataList.addAll(cardList)
-        setUnMatchedCardIsLockedObserve()
         for (i in 0 .. 11) {
-            setCardTagObserve(cardList[i])
-            setCardClickAction(cardList[i])
+            setCardClickAction(i)
         }
 
-    }
+        uiOperationsManager.setUiEventObserver{ uiEvent ->
+            when(uiEvent){
+                is UiEvent.LockCardUiEvent -> uiOperationsManager.setImageIsEnabled(uiEvent.imageName,false)
+                is UiEvent.PerformBackAnimation -> {
+                    uiOperationsManager.performBackAnimation(uiEvent.imageName,object: AnimationEndListener{
+                        override fun onAnimationEnd() {
+                            uiEvent.callback.invoke()
+                        }
+                    })
+                }
+                is UiEvent.PerformFrontAnimation -> uiOperationsManager.performFrontAnimation(uiEvent.imageName)
+                is UiEvent.PerformShackAnimation -> {
+                    uiOperationsManager.performShackAnimation(uiEvent.imageName,object: AnimationEndListener {
+                        override fun onAnimationEnd() {
+                            uiEvent.callback.invoke()
+                        }
 
-
-
-    fun createCardList():MutableList<CardDetail>{
-        val cards  = mutableListOf<CardDetail>()
-        val numberLis = mutableListOf<Int>()
-        transform(numberLis)
-        cards.add(CardDetail("imageViewOne",numberLis[0]))
-        cards.add(CardDetail("imageViewTwo",numberLis[1]))
-        cards.add(CardDetail("imageViewThree",numberLis[2]))
-        cards.add(CardDetail("imageViewFour",numberLis[3]))
-        cards.add(CardDetail("imageViewFive",numberLis[4]))
-        cards.add(CardDetail("imageViewSix",numberLis[5]))
-        cards.add(CardDetail("imageViewSeven",numberLis[6]))
-        cards.add(CardDetail("imageViewEight",numberLis[7]))
-        cards.add(CardDetail("imageViewNine",numberLis[8]))
-        cards.add(CardDetail("imageViewTen",numberLis[9]))
-        cards.add(CardDetail("imageViewEleven",numberLis[10]))
-        cards.add(CardDetail("imageViewTwelve",numberLis[11]))
-        return cards;
-    }
-
-
-
-fun set_enable( ){
-    selectedImages.clear()
-    uiOperationsManager.unLockUnMatchedCard()
-
-}
-
-
-
-fun compare (cardOne:CardDetail,cardTwo:CardDetail) {
-
-    val point_one = cardOne.point
-    val point_two = cardTwo.point
-
-    when {
-
-        point_one != point_two -> {
-
-            shake(cardOne, "one")
-
-            shake(cardTwo, "two")
-
-
-        }
-
-
-        point_one == point_two -> {
-
-            timerUtils.delayTask(2000){
-                  uiOperationsManager.runOnUiThread {
-                        disappear(  cardOne,cardTwo, "one")
-                        disappear(  cardTwo,cardOne, "two")
-                  }
-            }
-
-        }
-
-    }
-
-
-}
-
-
-
-fun shake(ima: CardDetail, flag:String) {
-
-
-
-   uiOperationsManager.performShackAnimation(ima.imageName,object:AnimationEndListener{
-
-        override fun onAnimationEnd() {
-
-            rotateCardUpsideDown(ima,flag)
-
-        }
-
-    })
-
-}
-
-
-
-
-
-fun disappear (ima: CardDetail, pairedImage:CardDetail, flag:String){
-
-    uiOperationsManager.performDisappearAnimation(ima.imageName,object:AnimationEndListener{
-
-        override fun onAnimationEnd() {
-            // flag two 代表動畫完成
-            uiOperationsManager.setImageIsEnabled(ima.imageName,false)
-            if (flag == "two"){
-
-                unmatchedDataList.remove(ima)
-
-                unmatchedDataList.remove(pairedImage)
-
-                set_enable()
-
-                if (unmatchedDataList.size  == 0 ){
-
-                    uiOperationsManager.toastMessage("遊戲完成")
-
+                    })
                 }
 
+                is UiEvent.PerformDisappearAnimation -> {
+                    uiOperationsManager.performDisappearAnimation(uiEvent.imageName,object: AnimationEndListener {
+                        override fun onAnimationEnd() {
+                            uiEvent.callback.invoke()
+                        }
+                    })
+                }
+
+                is UiEvent.Toast ->  uiOperationsManager.toastMessage(uiEvent.message)
+                is UiEvent.LockAllUnMatchedCardUiEvent -> {
+                    uiEvent.allUnMatchedCard.forEach {
+                        uiOperationsManager.setImageIsEnabled(it.imageName,false)
+                    }
+                }
+                is UiEvent.UnLockAllUnMatchedCardUiEvent -> {
+                    uiEvent.allUnMatchedCard.forEach{
+                        uiOperationsManager.setImageIsEnabled(it.imageName,true)
+                    }
+                }
+
+                is UiEvent.RenderCardBack ->  uiOperationsManager.setCardBackImage(uiEvent.imageName)
+                is UiEvent.RenderCardFront -> uiOperationsManager.set_mycard_Image(uiEvent.imageName,uiEvent.point)
             }
-
-
         }
 
-    })
-
-}
-
-
-
-
-  fun rotateCardUpright(cardDetail: CardDetail){
-
-      uiOperationsManager.performBackAnimation(cardDetail.imageName,object: AnimationEndListener{
-          override fun onAnimationEnd() {
-              uiOperationsManager.changeCardTagToFront(cardDetail.imageName)
-              uiOperationsManager.performFrontAnimation(cardDetail.imageName)
-              pendingComparisonDataList.add(cardDetail)
-              if (pendingComparisonDataList.size == 2 ) {
-                  compare (pendingComparisonDataList[0],pendingComparisonDataList[1])
-                  pendingComparisonDataList.clear()
-              }
-
-          }
-
-          })
-
-  }
-
-  fun rotateCardUpsideDown(ima: CardDetail, flag:String){
-
-      uiOperationsManager.performBackAnimation(ima.imageName,object: AnimationEndListener{
-          override fun onAnimationEnd() {
-              uiOperationsManager.changeCardTagToBack(ima.imageName)
-              uiOperationsManager.performFrontAnimation(ima.imageName)
-              // flag two 代表動畫完成
-              if (flag == "two"){
-                  set_enable()
-              }
-
-          }
-      })
-
-  }
-    private fun setUnMatchedCardIsLockedObserve(){
-        uiOperationsManager.setUnMatchedDataIsLockedObserver{ isLocked ->
-            val isEnabled = !isLocked
-            unmatchedDataList.forEach {
-                uiOperationsManager.setImageIsEnabled(it.imageName,isEnabled)
-            }
-
-        }
     }
-    private fun setCardTagObserve(cardDetail: CardDetail){
 
-        uiOperationsManager.setCarTagObserver(cardDetail.imageName){
-
-            if (it == "front"){
-
-                uiOperationsManager.set_mycard_Image(cardDetail.imageName,cardDetail.point)
-            }
-
-            if (it == "back"){
-
-                uiOperationsManager.setCardBackImage(cardDetail.imageName)
-
-
-            }
-
-        }
-    }
-    private fun setCardClickAction(cardDetail: CardDetail){
-        uiOperationsManager.setCarClickListener(cardDetail.imageName) {
-
-            uiOperationsManager.setImageIsEnabled(cardDetail.imageName,false)
-
-            selectedImages.add(cardDetail)
-
-            if (selectedImages.size == 2){
-                uiOperationsManager.lockUnMatchedCard()
-            }
-
-            rotateCardUpright(cardDetail)
-
+     private fun setCardClickAction(index:Int){
+        uiOperationsManager.setCarClickListener(index) {
+           uiOperationsManager.emitSelection(index)
         }
     }
 
