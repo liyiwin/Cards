@@ -6,7 +6,7 @@ import com.example.cards.ui_operation.AnimationEndListener
 import com.example.cards.ui_operation.UiOperationsManager
 
 
-class UiLogicDelegate (private val carTagManager: ICardTagManager,private val uiOperationsManager: UiOperationsManager){
+class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager){
 
     private val pendingComparisonDataList = mutableListOf<PendingComparisonData>()
     private var selectedImages = mutableListOf<ImageData>()
