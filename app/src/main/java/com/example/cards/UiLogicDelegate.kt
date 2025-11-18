@@ -108,32 +108,12 @@ fun compare () {
 
         point_one == point_two -> {
 
-            var time = 2
-
-            val handler = android.os.Handler()
-            val runnable = object :Runnable{
-                override fun run() {
-
-                    handler.postDelayed(this,1000)
-
-                    time = time-1
-
-                    if (time == 0){
-
-                        handler.removeCallbacks(this)
-
+            timerUtils.delayTask(2000){
+                  uiOperationsManager.runOnUiThread {
                         disappear(  ima_one,ima_two, "one")
-
                         disappear(  ima_two,ima_one, "two")
-
-                    }
-
-
-                }
-
-
+                  }
             }
-            handler.postDelayed(runnable,1000)
 
         }
 
