@@ -18,7 +18,7 @@ class UiLogicDelegate (private val carTagManager: ICardTagManager,private val un
 
 
     fun performCreate(){
-        add_Image_into_list(unmatchedDataList)
+        add_Image_into_list()
 
         transform(list)
 
@@ -54,26 +54,26 @@ class UiLogicDelegate (private val carTagManager: ICardTagManager,private val un
 
 
 
-    fun add_Image_into_list(list: MutableList<ImageData>){
+    fun add_Image_into_list(){
 
-        list.add(ImageData("imageViewOne"))
-        list.add(ImageData("imageViewTwo"))
-        list.add(ImageData("imageViewThree"))
-        list.add(ImageData("imageViewFour"))
-        list.add(ImageData("imageViewFive"))
-        list.add(ImageData("imageViewSix"))
-        list.add(ImageData("imageViewSeven"))
-        list.add(ImageData("imageViewEight"))
-        list.add(ImageData("imageViewNine"))
-        list.add(ImageData("imageViewTen"))
-        list.add(ImageData("imageViewEleven"))
-        list.add(ImageData("imageViewTwelve"))
+        unmatchedDataList.add(ImageData("imageViewOne"))
+        unmatchedDataList.add(ImageData("imageViewTwo"))
+        unmatchedDataList.add(ImageData("imageViewThree"))
+        unmatchedDataList.add(ImageData("imageViewFour"))
+        unmatchedDataList.add(ImageData("imageViewFive"))
+        unmatchedDataList.add(ImageData("imageViewSix"))
+        unmatchedDataList.add(ImageData("imageViewSeven"))
+        unmatchedDataList.add(ImageData("imageViewEight"))
+        unmatchedDataList.add(ImageData("imageViewNine"))
+        unmatchedDataList.add(ImageData("imageViewTen"))
+        unmatchedDataList.add(ImageData("imageViewEleven"))
+        unmatchedDataList.add(ImageData("imageViewTwelve"))
 
     }
 
 
 
-fun set_enable( selectedImages: MutableList<ImageData>){
+fun set_enable( ){
 
         selectedImages.clear()
         unMatchedDataManger.unlLockUnMatchedData()
@@ -82,7 +82,7 @@ fun set_enable( selectedImages: MutableList<ImageData>){
 
 
 
-fun compare ( unmatchedDataList: MutableList<ImageData>, selectedImages: MutableList<ImageData>) {
+fun compare () {
 
     if (pendingComparisonDataList.size == 2 ){
 
@@ -97,9 +97,9 @@ fun compare ( unmatchedDataList: MutableList<ImageData>, selectedImages: Mutable
 
         point_one != point_two -> {
 
-            shake(ima_one,selectedImages, "one")
+            shake(ima_one, "one")
 
-            shake(ima_two,selectedImages, "two")
+            shake(ima_two, "two")
 
 
         }
@@ -121,9 +121,9 @@ fun compare ( unmatchedDataList: MutableList<ImageData>, selectedImages: Mutable
 
                         handler.removeCallbacks(this)
 
-                        disappear( unmatchedDataList,selectedImages, ima_one,ima_two, "one")
+                        disappear(  ima_one,ima_two, "one")
 
-                        disappear( unmatchedDataList,selectedImages, ima_two,ima_one, "two")
+                        disappear(  ima_two,ima_one, "two")
 
                     }
 
@@ -144,7 +144,7 @@ fun compare ( unmatchedDataList: MutableList<ImageData>, selectedImages: Mutable
 
 
 
-fun shake(ima: ImageData, selectedImages: MutableList<ImageData>, flag:String) {
+fun shake(ima: ImageData, flag:String) {
 
 
 
@@ -158,7 +158,7 @@ fun shake(ima: ImageData, selectedImages: MutableList<ImageData>, flag:String) {
 
             if (flag == "two"){
 
-                set_enable(selectedImages)
+                set_enable()
 
             }
 
@@ -172,7 +172,7 @@ fun shake(ima: ImageData, selectedImages: MutableList<ImageData>, flag:String) {
 
 
 
-fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: MutableList<ImageData>, ima: ImageData, pairedImage:ImageData, flag:String){
+fun disappear ( ima: ImageData, pairedImage:ImageData, flag:String){
 
     uiOperationsManager.performDisappearAnimation(ima.imageName,object:AnimationEndListener{
 
@@ -188,7 +188,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                 unmatchedDataList.remove(pairedImage)
 
-                set_enable(selectedImages)
+                set_enable()
 
                 if (unmatchedDataList.size  == 0 ){
 
@@ -208,7 +208,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
 
 
-  fun rotateCardUpright(unmatchedDataList:MutableList<ImageData>, selectedImages:MutableList<ImageData>, point:Int, ima: ImageData){
+  fun rotateCardUpright( point:Int, ima: ImageData){
 
       uiOperationsManager.performBackAnimation(ima.imageName,object: AnimationEndListener{
           override fun onAnimationEnd() {
@@ -223,7 +223,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
                       }
 
@@ -235,7 +235,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
                       }
 
@@ -247,7 +247,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
                       }
 
@@ -259,7 +259,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
                       }
 
@@ -271,7 +271,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point ))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
                       }
 
                       "imageViewSix"->{
@@ -282,7 +282,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
                       }
 
@@ -294,7 +294,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
                       }
 
@@ -306,7 +306,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
                       }
 
@@ -318,7 +318,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
                       }
 
@@ -331,7 +331,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point ))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
 
                       }
@@ -344,7 +344,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
                       }
 
@@ -356,7 +356,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
                           pendingComparisonDataList.add(PendingComparisonData(ima,point  ))
 
-                          compare (unmatchedDataList,selectedImages)
+                          compare ()
 
 
                       }
@@ -508,7 +508,7 @@ fun disappear (unmatchedDataList: MutableList<ImageData>, selectedImages: Mutabl
 
             }
 
-            rotateCardUpright(unmatchedDataList,selectedImages,number,ImageData(imageName))
+            rotateCardUpright(number,ImageData(imageName))
 
         }
     }
