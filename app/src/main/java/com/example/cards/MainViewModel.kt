@@ -3,6 +3,7 @@ package com.example.cards
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cards.domain.ICardNumberUseCase
+import com.example.cards.domain.model.CardNumberCalculationModel
 import com.example.cards.ui_model.CardDetail
 import com.example.cards.ui_model.UiEvent
 import com.example.cards.ui_model.ViewModelEvent
@@ -131,7 +132,7 @@ class MainViewModel@Inject constructor(
     private fun createCardList():MutableList<CardDetail>{
         val cards  = mutableListOf<CardDetail>()
         val numberLis = mutableListOf<Int>()
-        transform(numberLis)
+        cardNumberUseCase.transform(numberLis, CardNumberCalculationModel())
         cards.add(CardDetail("imageViewOne",numberLis[0]))
         cards.add(CardDetail("imageViewTwo",numberLis[1]))
         cards.add(CardDetail("imageViewThree",numberLis[2]))
