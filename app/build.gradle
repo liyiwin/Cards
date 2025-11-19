@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id "dagger.hilt.android.plugin"
 }
 android {
     compileSdk 35
@@ -56,4 +57,20 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.9.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    // Hilt dependency
+    implementation "com.google.dagger:hilt-android:$dagger_version"
+    kapt "com.google.dagger:hilt-android-compiler:$dagger_version"
+
+    // Hilt ViewModel
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$viewmodel_hilt_version"
+//    kapt "androidx.hilt:hilt-compiler:$viewmodel_hilt_version"
+
+    // Dagger dependencies
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Dagger Android
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 }
