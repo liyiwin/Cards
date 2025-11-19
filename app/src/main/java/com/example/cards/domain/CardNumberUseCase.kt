@@ -2,7 +2,7 @@ package com.example.cards.domain
 
 import com.example.cards.domain.model.CarNumberCalculationModel
 
-class CarNumberUseCase :ICarNumberUseCase{
+class CardNumberUseCase :ICardNumberUseCase{
 
 
     private  fun random_list_position (calculationModel: CarNumberCalculationModel){
