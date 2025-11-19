@@ -2,14 +2,20 @@ package com.example.cards
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cards.domain.ICardNumberUseCase
 import com.example.cards.ui_model.CardDetail
 import com.example.cards.ui_model.UiEvent
 import com.example.cards.ui_model.ViewModelEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel: ViewModel() {
+@HiltViewModel
+class MainViewModel@Inject constructor(
+    private val cardNumberUseCase: ICardNumberUseCase
+): ViewModel() {
     private val pendingComparisonDataList = mutableListOf<CardDetail>()
     private var unmatchedDataList = mutableListOf<CardDetail>()
     private var selectedImages = mutableListOf<CardDetail>()
