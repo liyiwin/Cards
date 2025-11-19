@@ -18,52 +18,50 @@ import com.example.cards.ui_model.UiEvent
 import com.example.cards.ui_model.ViewModelEvent
 import kotlinx.coroutines.launch
 
-class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val mainViewModel: MainViewModel,private val lifecycleOwner: LifecycleOwner) {
+class UiOperationsManager(private val activity:AppCompatActivity,private val binding: ActivityMainBinding,private val mainViewModel: MainViewModel,private val lifecycleOwner: LifecycleOwner) :IUiOperationsManager {
 
 
-    fun emitSelection(index:Int){
+    override fun emitSelection(index:Int){
         mainViewModel.sendViewModelEvent(ViewModelEvent.CardSelectionViewModelEvent(index))
     }
 
-
-
-    fun setCarClickListener(index:Int,listener:() -> Unit){
+    override fun setCarClickListener(index:Int,listener:() -> Unit){
         val imageView = getImageView(index)
         imageView.setOnClickListener { listener.invoke() }
     }
 
-    fun set_mycard_Image(imageName:String,number:Int){
+    override fun set_mycard_Image(imageName:String,number:Int){
         val drawable = getDrawable(number)
         val imageView = getImageView(imageName)
         imageView.setImageResource(drawable)
     }
-    fun setCardBackImage(imageName:String){
+    override fun setCardBackImage(imageName:String){
         val imageView = getImageView(imageName)
         imageView.setImageResource(R.drawable.background)
     }
 
-    fun toastMessage(message:String){
+    override fun toastMessage(message:String){
         Toast.makeText(activity,message, Toast.LENGTH_LONG).show()
     }
 
-    fun setImageIsEnabled(imageName:String , isEnabled:Boolean){
+    override fun setImageIsEnabled(imageName:String , isEnabled:Boolean){
         val imageView = getImageView(imageName)
         imageView.isEnabled = isEnabled
     }
-    fun performDisappearAnimation(imageName: String,animationEndListener:AnimationEndListener){
+    override fun performDisappearAnimation(imageName: String,animationEndListener:AnimationEndListener){
 
         val my_animation = AnimationUtils.loadAnimation(activity,R.anim.disappear)
         val imageView = getImageView(imageName)
         _performAnimation(imageView,animationEndListener,my_animation)
     }
-    fun performShackAnimation(imageName: String,animationEndListener:AnimationEndListener){
+    override fun performShackAnimation(imageName: String,animationEndListener:AnimationEndListener){
 
         val my_animation = AnimationUtils.loadAnimation(activity,R.anim.shake)
         val imageView = getImageView(imageName)
         _performAnimation(imageView,animationEndListener,my_animation)
     }
 
-    fun performBackAnimation(imageName: String,animationEndListener:AnimationEndListener){
+    override fun performBackAnimation(imageName: String,animationEndListener:AnimationEndListener){
 
         val my_animation =  AnimationUtils.loadAnimation(activity, R.anim.back)
         val imageView = getImageView(imageName)
@@ -98,12 +96,12 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         imageView.startAnimation(animation)
     }
 
-    fun performFrontAnimation(imageName:String){
+    override fun performFrontAnimation(imageName:String){
         var my_animation = AnimationUtils.loadAnimation(activity, R.anim.font)
         val imageView = getImageView(imageName)
         imageView.startAnimation(my_animation)
     }
-    fun getDrawable(number: Int):Int{
+    private fun getDrawable(number: Int):Int{
         when(number){
             1->return R.drawable.a
             2->return R.drawable.two
@@ -121,7 +119,7 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         }
     }
 
-    fun getImageView(index: Int):ImageView{
+    private fun getImageView(index: Int):ImageView{
         when(index){
             0 ->{
                 return binding.imageViewOne
@@ -162,7 +160,7 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         }
     }
 
-    fun getImageView(imageName: String):ImageView{
+    private fun getImageView(imageName: String):ImageView{
         when(imageName){
             "imageViewOne" ->{
                 return binding.imageViewOne
@@ -203,7 +201,7 @@ class UiOperationsManager(private val activity:AppCompatActivity,private val bin
         }
     }
 
-    fun setUiEventObserver(uiEventObserver:(UiEvent)->Unit){
+    override fun setUiEventObserver(uiEventObserver:(UiEvent)->Unit){
        lifecycleOwner.lifecycleScope.launch {
            lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                mainViewModel.uiEvent.collect{ event ->
