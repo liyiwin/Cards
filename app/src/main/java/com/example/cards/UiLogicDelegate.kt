@@ -3,10 +3,11 @@ package com.example.cards
 
 import com.example.cards.ui_model.UiEvent
 import com.example.cards.ui_operation.AnimationEndListener
+import com.example.cards.ui_operation.IUiOperationsManager
 import com.example.cards.ui_operation.UiOperationsManager
 
 
-class UiLogicDelegate (private val uiOperationsManager: UiOperationsManager){
+class UiLogicDelegate (private val uiOperationsManager: IUiOperationsManager){
 
 
     fun performCreate(){
