@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.cards.databinding.ActivityMainBinding
 import com.example.cards.ui_operation.UiOperationsManager
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
 
 
     private lateinit var binding: ActivityMainBinding
