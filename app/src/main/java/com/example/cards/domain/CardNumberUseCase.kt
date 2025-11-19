@@ -1,11 +1,11 @@
 package com.example.cards.domain
 
-import com.example.cards.domain.model.CarNumberCalculationModel
+import com.example.cards.domain.model.CardNumberCalculationModel
 
 class CardNumberUseCase :ICardNumberUseCase{
 
 
-    private  fun random_list_position (calculationModel: CarNumberCalculationModel){
+    private  fun random_list_position (calculationModel: CardNumberCalculationModel){
 
         val number = calculationModel.number_list.size
 
@@ -18,7 +18,7 @@ class CardNumberUseCase :ICardNumberUseCase{
 
     }
 
-   private fun random_position(calculationModel: CarNumberCalculationModel){
+   private fun random_position(calculationModel: CardNumberCalculationModel){
 
         val number = calculationModel.position_list.size
 
@@ -44,7 +44,7 @@ class CardNumberUseCase :ICardNumberUseCase{
 
     }
 
-    override fun transform (list: MutableList<Int>,calculationModel: CarNumberCalculationModel){
+    override fun transform (list: MutableList<Int>,calculationModel: CardNumberCalculationModel){
 
         while(calculationModel.a > 0){
 

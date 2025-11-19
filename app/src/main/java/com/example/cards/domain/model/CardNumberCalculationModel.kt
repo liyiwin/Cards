@@ -1,6 +1,6 @@
 package com.example.cards.domain.model
 
-class CarNumberCalculationModel {
+class CardNumberCalculationModel {
 
     var a = 6
 
